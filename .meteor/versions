@@ -1,7 +1,6 @@
 angular@1.0.2
 angular:angular@1.4.7
 angularui:angular-ui-router@0.2.15
-autopublish@1.0.4
 autoupdate@1.2.3
 babel-compiler@5.8.24_1
 babel-runtime@0.1.4
@@ -64,6 +63,7 @@ standard-minifiers@1.0.1
 templating@1.1.4
 templating-tools@1.0.0
 tracker@1.0.9
+twbs:bootstrap@3.3.5
 ui@1.0.8
 underscore@1.0.4
 url@1.0.5

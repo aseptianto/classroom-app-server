@@ -7,7 +7,8 @@ angular.module('ClassRoom').config(['$urlRouterProvider', '$stateProvider', '$lo
       $stateProvider
         .state('root', {
           url: '/',
-          templateUrl: 'client/views/index.ng.html'
+          templateUrl: 'client/views/index.ng.html',
+          controller: 'getSubmissions'
         });
  
       //$urlRouterProvider.otherwise("/");

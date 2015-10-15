@@ -1,7 +1,14 @@
 <head>
     <base href="/">
+    <script>
+        $( document ).ready(function() {
+            $( "#cc" ).html( "<span class='red'>Hello <b>Again</b></span>" );
+        });
+    </script>
 </head>
 
 <body ng-app="ClassRoom">
     <div ui-view></div>
+    <div id="cc"></div>
+   
 </body>

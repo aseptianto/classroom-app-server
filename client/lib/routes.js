@@ -9,7 +9,11 @@ angular.module('ClassRoom').config(['$urlRouterProvider', '$stateProvider', '$lo
           url: '/',
           templateUrl: 'client/views/index.ng.html',
           controller: 'getSubmissions'
+        })
+        .state('404', {
+          url: '/404',
+          templateUrl: 'client/views/404.ng.html'
         });
  
-      //$urlRouterProvider.otherwise("/");
+      $urlRouterProvider.otherwise("/404");
 }]);

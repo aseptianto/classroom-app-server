@@ -5,20 +5,35 @@
         <div class="row border-bottom" ng-include="'client/views/topbar.ng.html'"></div>
         <div class="row border-bottom white-bg dashboard-header">
             <div>In the page of students</div>
+            Add a student
+            <form>
+                <label>username</label>
+                <input ng-model="newStu.username">
+                <label>password</label>
+                <input ng-model="newStu.password">
+                <label>name</label>
+                <input ng-model="newStu.name">
+                <label>DateofBirth</label>
+                <input ng-model="newStu.dob">
+                <button ng-click="createStu(newStu)">Add</button>
+            </form>
+            <br>
+            <br>
+            <br>
             <div ng-repeat="stu in users">
               <form>
                 <label>Username</label>
                 <input ng-model="stu.username">
                 <label>Date of Birth</label>
                 <input ng-model="stu.dob">
-                <select class="form-control">
+                <select class="form-control" ng-model="stu.isTeacher">
                     <option value="0">Student</option>
                     <option value="1">Teacher</option>
                 </select>
+                <div class="col-xs-4 ma-add-button-container">
+                    <button class="btn" ng-click="save()">Save</button>
+                </div>
               </form>
-              <div class="col-xs-4 ma-add-button-container">
-                <button class="btn" ng-click="">Add</button>
-              </div>
             </div>
         </div>
     </div>

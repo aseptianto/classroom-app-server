@@ -1,9 +1,9 @@
 
 angular.module('ClassRoom').config(['$urlRouterProvider', '$stateProvider', '$locationProvider',
     function($urlRouterProvider, $stateProvider, $locationProvider){
- 
+
       $locationProvider.html5Mode(true);
- 
+
       $stateProvider
         .state('root', {
           url: '/',
@@ -16,7 +16,8 @@ angular.module('ClassRoom').config(['$urlRouterProvider', '$stateProvider', '$lo
         })
         .state('students', {
           url: '/students',
-          templateUrl: 'client/views/students-page.ng.html'
+          templateUrl: 'client/views/students-page.ng.html',
+          controller: 'StudentsCtrl'
         })
         .state('sessions', {
           url: '/sessions',
@@ -35,6 +36,6 @@ angular.module('ClassRoom').config(['$urlRouterProvider', '$stateProvider', '$lo
           }
         })
         ;
- 
+
       $urlRouterProvider.otherwise("/404");
 }]);

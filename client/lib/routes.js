@@ -7,13 +7,34 @@ angular.module('ClassRoom').config(['$urlRouterProvider', '$stateProvider', '$lo
       $stateProvider
         .state('root', {
           url: '/',
-          templateUrl: 'client/views/index.ng.html',
+          templateUrl: 'client/views/home.ng.html',
           controller: 'getSubmissions'
         })
         .state('404', {
           url: '/404',
           templateUrl: 'client/views/404.ng.html'
-        });
+        })
+        .state('students', {
+          url: '/students',
+          templateUrl: 'client/views/students-page.ng.html'
+        })
+        .state('sessions', {
+          url: '/sessions',
+          templateUrl: 'client/views/sessions-page.ng.html'
+        })
+        .state('submissions', {
+          url: '/submissions',
+          templateUrl: 'client/views/submissions-page.ng.html'
+        })
+        .state('page', {
+          url: '/page',
+          templateUrl: 'client/views/page.ng.html',
+          views: {
+            "sidebar": { template: 'client/views/sidebar.ng.html' },
+            "topbar": { template: 'client/views/topbar.ng.html' }
+          }
+        })
+        ;
  
       $urlRouterProvider.otherwise("/404");
 }]);

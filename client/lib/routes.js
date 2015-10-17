@@ -21,7 +21,8 @@ angular.module('ClassRoom').config(['$urlRouterProvider', '$stateProvider', '$lo
         })
         .state('sessions', {
           url: '/sessions',
-          templateUrl: 'client/views/sessions-page.ng.html'
+          templateUrl: 'client/views/sessions-page.ng.html',
+          controller: 'SessionsCtrl'
         })
         .state('submissions', {
           url: '/submissions',

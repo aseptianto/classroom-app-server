@@ -10,7 +10,11 @@ angular.module("ClassRoom").controller("StudentsCtrl", ['$scope', '$meteor',
         };
 
         $scope.createStu = function(newStu){
-          Meteor.call('addStu', newStu);
+          Meteor.call('addStu', newStu); //call the server side function
         };
     }
 ]);
+
+Template.body.rendered=function() {
+    $('#my-datepicker').datepicker();
+}

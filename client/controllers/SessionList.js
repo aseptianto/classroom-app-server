@@ -1,9 +1,8 @@
 angular.module("ClassRoom").controller("SessionsCtrl", ['$scope', '$meteor',
     function($scope, $meteor){
 
-        $scope.$meteorSubscribe('session').then(function(subscriptionHandle){
-            $scope.session = $meteor.collection(Meteor.session, false);
-        });
+        $scope.session = $meteor.collection(Session).subscribe('session');
+        console.log($scope.session);
 
         $scope.save = function(){
             $scope.session.save();
@@ -11,7 +10,7 @@ angular.module("ClassRoom").controller("SessionsCtrl", ['$scope', '$meteor',
 
         $scope.createSession = function(newSession){
             alert(Meteor.userId());
-            Session.insert({name: newSession.name, description: newSession.description, teachers: [Meteor.userId()]});
+            Session.insert({name: newSession.name, description: newSession.description, teachers: [Meteor.userId()], students: []});
            // Meteor.call('addSession', newSession);
         };
     }

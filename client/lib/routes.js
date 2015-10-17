@@ -8,7 +8,7 @@ angular.module('ClassRoom').config(['$urlRouterProvider', '$stateProvider', '$lo
         .state('root', {
           url: '/',
           templateUrl: 'client/views/home.ng.html',
-          controller: 'getSubmissions'
+          controller: ''
         })
         .state('404', {
           url: '/404',
@@ -26,15 +26,8 @@ angular.module('ClassRoom').config(['$urlRouterProvider', '$stateProvider', '$lo
         })
         .state('submissions', {
           url: '/submissions',
-          templateUrl: 'client/views/submissions-page.ng.html'
-        })
-        .state('page', {
-          url: '/page',
-          templateUrl: 'client/views/page.ng.html',
-          views: {
-            "sidebar": { template: 'client/views/sidebar.ng.html' },
-            "topbar": { template: 'client/views/topbar.ng.html' }
-          }
+          templateUrl: 'client/views/submissions-page.ng.html',
+          controller: 'SubmissionsCtrl'
         })
         ;
 

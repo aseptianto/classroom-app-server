@@ -15,6 +15,6 @@ angular.module("ClassRoom").controller("StudentsCtrl", ['$scope', '$meteor',
     }
 ]);
 
-Template.body.rendered=function() {
-    $('#my-datepicker').datepicker();
+Template.body.rendered = function() {
+    $('.my-datepicker').datepicker();
 }

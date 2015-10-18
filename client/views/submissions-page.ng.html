@@ -9,7 +9,7 @@
               <tr ng-repeat="user in users">
                 <td>{{user.username}}</td>
                 <td></td>
-                <td><button onclick="return popup('submissions/{{user.username}}');">View</button></td>
+                <td><a ng-click="popup(user._id);">View</a></td>
               </tr>
             </table>
             <ul ng-repeat="sub in submissions">
@@ -28,11 +28,3 @@
         </div>
     </div>
 </div>
-
-<script>
-function popup(url){
-  newwindow=window.open(url,'_blank','height=600,width=800');
-  if (window.focus) {newwindow.focus()}
-  return false;
-}
-</script>

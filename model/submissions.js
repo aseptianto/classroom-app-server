@@ -1,6 +1,8 @@
 Submissions = new Mongo.Collection("submissions");
 
+//Session = new Mongo.Collection("session", {idGeneration : 'MONGO'});
 Session = new Mongo.Collection("session");
+
 
 Session.allow({
   insert: function(userId, doc, fields, modifier){

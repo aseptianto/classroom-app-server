@@ -1,11 +1,11 @@
 angular.module("ClassRoom").controller("SessionsCtrl", ['$scope', '$meteor',
     function($scope, $meteor){
 
-        $scope.session = $meteor.collection(Session).subscribe('session');
-        console.log($scope.session);
+        $scope.sessions = $meteor.collection(Session).subscribe('session');
+        console.log($scope.sessions);
 
         $scope.save = function(){
-            $scope.session.save();
+            $scope.sessions.save();
         };
 
         $scope.createSession = function(newSession){

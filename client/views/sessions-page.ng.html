@@ -16,9 +16,9 @@
             </form>
 
         <br/><br/>
-            <div ng-repeat="sess in session">
+            <div ng-repeat="sess in sessions">
                 <li>
-                    <a href="/sessions/{{sess._id}}"><i class="fa fa-edit"></i><span class="nav-label">{{sess.name}}</span></a>
+                    <a href="/sessions/{{sess._id._str}}"><i class="fa fa-edit"></i><span class="nav-label">{{sess.name}}</span></a>
                 </li>
             </div>
         </div>

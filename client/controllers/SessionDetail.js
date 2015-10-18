@@ -1,23 +1,36 @@
 angular.module("ClassRoom").controller("SessionDetailCtrl", ['$scope', '$stateParams', '$meteor',
-    function($scope, $stateParams, $meteor){
-
-        $meteor.collection(Session).stop();
+    function ($scope, $stateParams, $meteor) {
         $scope.sessionId = $stateParams.sessionId;
-        $scope.sessionDetail = $meteor.collection(Session).subscribe('sessionDetail', $scope.sessionId);
 
-        $scope.save = function(){
-            $scope.session.save();
+        $scope.session = $meteor.object(Session, new Mongo.ObjectID($scope.sessionId));
+        $scope.session.subscribe("session");
+
+        console.log($scope.session.students);
+
+        $scope.places = $meteor.collection(Place).subscribe('place');
+        //console.log($scope.places);
+
+        $scope.studentList = $meteor.collection(function () {
+            return Meteor.users.find({isTeacher: 0});
+        }).subscribe("students");
+
+        console.log($scope.studentList);
+        $scope.addStudent = function (newStudentId) {
+            console.log($scope.session.students);
+            if($scope.session.students.indexOf(newStudentId) === -1 && newStudentId !== ""){
+                Session.update({_id: new Mongo.ObjectID($scope.sessionId)}, {$push: {students: newStudentId}});
+            }
+            else if(newStudentId === "");
+            else alert("student exists");
         };
 
-        $scope.addStudent = function(newStudentUsername){
-            Meteor.call('getUserId', newStudentUsername, function(err, userId){
-                if(err) alert(err);
-                if(userId != -1){
-                    Session.update({_id: $scope.sessionId}, {$push: {students: userId}});
-                    console.log("update " + $scope.sessionId + " with " + userId);
-                }
-                else alert("username not exist");
-            });
+        $scope.addPlace = function (newPlaceId) {
+            console.log(newPlaceId);
+            if($scope.session.places.indexOf(newPlaceId) === -1 && newPlaceId !== ""){
+                Session.update({_id: new Mongo.ObjectID($scope.sessionId)}, {$push: {places: newPlaceId}});
+            }
+            else if(newPlaceId === "");
+            else alert("place exists");
         };
     }
 ]);

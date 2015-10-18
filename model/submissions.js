@@ -1,8 +1,20 @@
 Submissions = new Mongo.Collection("submissions");
 
-//Session = new Mongo.Collection("session", {idGeneration : 'MONGO'});
-Session = new Mongo.Collection("session");
+Session = new Mongo.Collection("session", {idGeneration : 'MONGO'});
+//Session = new Mongo.Collection("session");
 
+Place = new Mongo.Collection("place", {idGeneration: 'MONGO'});
+
+Place.allow({
+  insert: function(userId, doc, fields, modifier){
+    return true;
+  },
+  update: function(userId, doc, fields, modifier){
+    return true;
+  },
+  remove: function(userId, doc, fields, modifier){
+    return true;
+  }});
 
 Session.allow({
   insert: function(userId, doc, fields, modifier){
@@ -17,7 +29,7 @@ Session.allow({
 
 Submissions.allow({
   insert: function(userId, doc, fields, modifier){
-   return true;
+    return true;
   },
   update: function(userId, doc, fields, modifier){
     return true;

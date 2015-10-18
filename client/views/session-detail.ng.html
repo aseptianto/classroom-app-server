@@ -4,36 +4,51 @@
     <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="row border-bottom" ng-include="'client/views/topbar.ng.html'"></div>
         <div class="row border-bottom white-bg dashboard-header">
-            <div>{{sessionDetail[0].name}}</div>
-
+            <div>{{session.name}}</div>
 
 
             <br/><br/><br/>
-            <div ng-repeat="sess in sessionDetail">
-                <form>
-                    <label>Name</label>
-                    <input ng-model="sess.name">
-                    <label>Description</label>
-                    <input ng-model="sess.description">
-                    <button class="btn" ng-click="save()">Save name and description</button>
-                    <br/>
-                    <label>Teachers</label>
-                    <div ng-repeat ="teacher in sess.teachers">
-                        <label>{{teacher}}</label>
-                    </div>
-                    <br/>
-                    <label>Students</label>
-                    <div ng-repeat ="student in sess.students">
-                        <label>{{student}}</label>
-                    </div>
-                    <br/>
-                    <label>Add Student to Session (Username)</label>
-                    <input ng-model ="newStudentUsername">
-                    <button class="btn" ng-click="addStudent(newStudentUsername)">Add Student</button>
-                    <br/><br/><br/>
 
-                </form>
-            </div>
+            <form>
+                <label>Name</label>
+                <input ng-model="session.name">
+                <label>Description</label>
+                <input ng-model="session.description">
+                <br/>
+                <label>Teachers</label>
+
+                <div ng-repeat="teacher in session.teachers">
+                    <label>{{teacher}}</label>
+                </div>
+                <br/>
+                <label>Students</label>
+
+                <div ng-repeat="student in session.students">
+                    <label>{{student}}</label>
+                </div>
+                <br/>
+                <label>Add Student to Session (Username)</label>
+                <select ng-model="newStudentId">
+                    <option value="">---Please select---</option>
+                    <option ng-repeat="student in studentList" value="{{student._id}}">{{student.name}}</option>
+                </select>
+                <button class="btn" ng-click="addStudent(newStudentId)">Add Student</button>
+                <br/><br/><br/>
+
+                <label>Add Places</label>
+                <div ng-repeat="place in session.places">
+                    <label>{{place}}</label>
+                </div>
+                <a href="/addPlace/{{session._id._str}}"><i class="fa fa-edit"></i><span class="nav-label">Add new place</span></a>
+                <label>Use existing place</label>
+                <select ng-model="newPlaceId">
+                    <option value="">---Please select---</option>
+                    <option ng-repeat="place in places" value="{{place._id._str}}">{{place.name}}</option>
+                </select>
+                <button class="btn" ng-click="addPlace(newPlaceId)">Add Place</button>
+            </form>
+
+
 
         </div>
     </div>

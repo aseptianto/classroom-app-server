@@ -14,7 +14,7 @@
                 <label>name</label>
                 <input ng-model="newStu.name">
                 <label>DateofBirth</label>
-                <input type="text" id="my-datepicker" ng-model="newStu.dob">
+                <input type="text" class="my-datepicker" ng-model="newStu.dob">
                 <button ng-click="createStu(newStu); newStu='';">Add</button>
             </form>
             <br>
@@ -26,7 +26,7 @@
                 <label>Username</label>
                 <input ng-model="stu.username">
                 <label>Date of Birth</label>
-                <input ng-model="stu.dob">
+                <input type="text" class="my-datepicker" ng-model="stu.dob">
                 <select ng-model="stu.isTeacher">
                     <option value="0">Student</option>
                     <option value="1">Teacher</option>

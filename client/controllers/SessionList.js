@@ -1,5 +1,6 @@
 angular.module("ClassRoom").controller("SessionsCtrl", ['$scope', '$meteor',
     function($scope, $meteor){
+        $scope.heading = {title: 'Manage Session'};
 
         $scope.sessions = $meteor.collection(Session).subscribe('session');
         console.log($scope.sessions);

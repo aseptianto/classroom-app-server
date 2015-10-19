@@ -1,4 +1,6 @@
 angular.module('ClassRoom').controller('SubmissionsCtrl', ['$scope', '$meteor', '$window', function ($scope, $meteor, $window) {
+    $scope.heading = {title: 'Submission Records'};
+
     $scope.$meteorSubscribe('submissions').then(function(subscriptionHandle){
         $scope.submissions = $meteor.collection(Submissions);
     });

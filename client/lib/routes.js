@@ -8,7 +8,7 @@ angular.module('ClassRoom').config(['$urlRouterProvider', '$stateProvider', '$lo
         .state('root', {
           url: '/',
           templateUrl: 'client/views/home.ng.html',
-          controller: ''
+          controller: 'HomeCtrl'
         })
         .state('404', {
           url: '/404',

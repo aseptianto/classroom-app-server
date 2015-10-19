@@ -3,37 +3,44 @@
 
     <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="row border-bottom" ng-include="'client/views/topbar.ng.html'"></div>
-        <div class="row border-bottom white-bg dashboard-header">
-            <div>In the page of students</div>
-            Add Student
-            <form>
-                <label>username</label>
-                <input ng-model="newStu.username">
-                <label>password</label>
-                <input ng-model="newStu.password">
-                <label>name</label>
-                <input ng-model="newStu.name">
-                <label>DateofBirth</label>
-                <input type="text" class="my-datepicker" ng-model="newStu.dob">
-                <button ng-click="createStu(newStu); newStu='';">Add</button>
-            </form>
-            <br>
-            <br>
-            <br>
-            Edit Student
-            <div ng-repeat="stu in users">
+        <div class="row wrapper border-bottom white-bg page-heading" ng-include="'client/views/headbar.ng.html'"></div>
+        <div class="wrapper wrapper-content">
+          <div class="row border-bottom white-bg dashboard-header">
+              <div>In the page of students</div>
+              Add Student
               <form>
-                <label>Username</label>
-                <input ng-model="stu.username">
-                <label>Date of Birth</label>
-                <input type="text" class="my-datepicker" ng-model="stu.dob">
-                <select ng-model="stu.isTeacher">
-                    <option value="0">Student</option>
-                    <option value="1">Teacher</option>
-                </select>
-                <button class="btn" ng-click="save()">Save</button>
+                  <label>username</label>
+                  <input ng-model="newStu.username">
+                  <label>password</label>
+                  <input ng-model="newStu.password">
+                  <label>name</label>
+                  <input ng-model="newStu.name">
+                  <label>DateofBirth</label>
+                  <input type="text" class="mdatepicker" ng-model="newStu.dob">
+                  <button ng-click="createStu(newStu); newStu='';">Add</button>
               </form>
-            </div>
-        </div>
+              <br>
+              <br>
+              <br>
+              Edit Student
+              <div ng-repeat="stu in users">
+                <form>
+                  <label>Username</label>
+                  <input ng-model="stu.username">
+                  <label>Date of Birth</label>
+                  <input type="text" class="mdatepicker" ng-model="stu.dob">
+                  <select ng-model="stu.isTeacher">
+                      <option value="0">Student</option>
+                      <option value="1">Teacher</option>
+                  </select>
+                  <button class="btn" ng-click="save()">Save</button>
+                </form>
+              </div>
+          </div>
+      </div>
     </div>
 </div>
+
+<script>
+  $('.mdatepicker').datepicker();
+</script>

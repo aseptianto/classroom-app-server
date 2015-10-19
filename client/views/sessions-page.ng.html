@@ -3,7 +3,9 @@
 
     <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="row border-bottom" ng-include="'client/views/topbar.ng.html'"></div>
-        <div class="row border-bottom white-bg dashboard-header">
+        <div class="row wrapper border-bottom white-bg page-heading" ng-include="'client/views/headbar.ng.html'"></div>
+        <div class="wrapper wrapper-content">
+          <div class="row border-bottom white-bg dashboard-header">
             <div>In the page of sessions</div>
 
             Add a session
@@ -21,6 +23,7 @@
                     <a href="/sessions/{{sess._id._str}}"><i class="fa fa-edit"></i><span class="nav-label">{{sess.name}}</span></a>
                 </li>
             </div>
+          </div>
         </div>
     </div>
 </div>

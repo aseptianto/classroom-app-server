@@ -1,5 +1,6 @@
 angular.module("ClassRoom").controller("StudentsCtrl", ['$scope', '$meteor',
     function($scope, $meteor){
+        $scope.heading = {title: 'Manage Student'};
 
         $scope.users = $meteor.collection(function() {
             return Meteor.users.find({isTeacher: 0});

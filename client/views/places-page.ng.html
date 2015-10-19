@@ -1,0 +1,27 @@
+<div id="wrapper">
+    <div ng-include="'client/views/sidebar.ng.html'"></div>
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom" ng-include="'client/views/topbar.ng.html'"></div>
+        <div class="row wrapper border-bottom white-bg page-heading" ng-include="'client/views/headbar.ng.html'"></div>
+        <div class="wrapper wrapper-content">
+            <div class="row border-bottom white-bg dashboard-header">
+                <div>In the page of places</div>
+
+                Add a place
+                <form>
+                    <label>name</label>
+                    <input ng-model="newPlace.name">
+                    <button ng-click="createPlace(newPlace)">Add</button>
+                </form>
+
+                <br/><br/>
+                <div ng-repeat="place in places">
+                    <li>
+                        <a href="/places/{{place._id._str}}"><i class="fa fa-edit"></i><span class="nav-label">{{place.name}}</span></a>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

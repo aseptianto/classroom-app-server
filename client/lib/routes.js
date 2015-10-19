@@ -29,6 +29,16 @@ angular.module('ClassRoom').config(['$urlRouterProvider', '$stateProvider', '$lo
           templateUrl: 'client/views/session-detail.ng.html',
           controller: 'SessionDetailCtrl'
         })
+        .state('placeDetail', {
+            url: '/places/:placeId',
+            templateUrl: 'client/views/place-detail.ng.html',
+            controller: 'PlaceDetailCtrl'
+        })
+        .state('places', {
+            url: '/places',
+            templateUrl: 'client/views/places-page.ng.html',
+            controller: 'PlacesCtrl'
+        })
         .state('submissions', {
           url: '/submissions',
           templateUrl: 'client/views/submissions-page.ng.html',

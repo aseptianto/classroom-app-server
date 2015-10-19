@@ -5,9 +5,14 @@ angular.module("ClassRoom").controller("SessionDetailCtrl", ['$scope', '$statePa
         $scope.session = $meteor.object(Session, new Mongo.ObjectID($scope.sessionId));
         $scope.session.subscribe("session");
 
-        console.log($scope.session.students);
+        console.dir($scope.session);
 
-        $scope.places = $meteor.collection(Place).subscribe('place');
+        /*$scope.session.students.forEach(function(studentId){
+            var student = Meteor.users.find({_id : studentId}).fetch();
+            console.log(student);
+        });*/
+
+        $scope.places = $meteor.collection(Place).subscribe('places');
         //console.log($scope.places);
 
         $scope.studentList = $meteor.collection(function () {

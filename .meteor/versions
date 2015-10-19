@@ -4,6 +4,7 @@ accounts-ui@1.1.6
 accounts-ui-unstyled@1.1.8
 angular@1.0.2
 angular:angular@1.4.7
+angularui:angular-google-maps@2.2.1
 angularui:angular-ui-router@0.2.15
 autoupdate@1.2.3
 babel-compiler@5.8.24_1
@@ -54,6 +55,7 @@ mobile-status-bar@1.0.6
 mongo@1.1.2
 mongo-id@1.0.1
 natestrauser:font-awesome@4.4.0
+nmccready:angular-simple-logger@0.0.4
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1
 observe-sequence@1.0.7
@@ -74,6 +76,7 @@ spacebars@1.0.7
 spacebars-compiler@1.0.7
 srp@1.0.4
 standard-minifiers@1.0.1
+stevezhu:lodash@1.0.2
 templating@1.1.4
 templating-tools@1.0.0
 tracker@1.0.9

@@ -1,0 +1,31 @@
+<div id="wrapper">
+    <div ng-include="'client/views/sidebar.ng.html'"></div>
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom" ng-include="'client/views/topbar.ng.html'"></div>
+        <div class="row wrapper border-bottom white-bg page-heading" ng-include="'client/views/headbar.ng.html'"></div>
+        <div class="wrapper wrapper-content">
+            <div class="row border-bottom white-bg dashboard-header">
+                <div>{{place.name}}</div>
+
+                <form>
+                    <label>name</label>
+                    <input ng-model="place.name">
+                    <br>
+                    <label>directions</label>
+                    <textarea ng-model="place.direction"></textarea>
+                    <br>
+                    <div class="place-details-maps">
+                        <div class="angular-google-map-container" style="height:400px;width:400px">
+                            <ui-gmap-google-map center="map.center"
+                                                events="map.events" zoom="map.zoom">
+
+                            </ui-gmap-google-map>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

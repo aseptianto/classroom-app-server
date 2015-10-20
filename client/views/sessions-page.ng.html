@@ -5,25 +5,72 @@
         <div class="row border-bottom" ng-include="'client/views/topbar.ng.html'"></div>
         <div class="row wrapper border-bottom white-bg page-heading" ng-include="'client/views/headbar.ng.html'"></div>
         <div class="wrapper wrapper-content">
-          <div class="row border-bottom white-bg dashboard-header">
-            <div>In the page of sessions</div>
 
-            Add a session
-            <form>
-                <label>name</label>
-                <input ng-model="newSession.name">
-                <label>description</label>
-                <input ng-model="newSession.description">
-                <button ng-click="createSession(newSession)">Add</button>
-            </form>
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Add New Session</h5>
+            </div>
+            <div class="ibox-content">
+                <form role="form" class="form-inline">
+                    <div class="form-group">
+                        <label for="newSessionName" class="sr-only">Session Name</label>
+                        <input id="newSessionName" placeholder="Session Name" class="form-control" ng-model="newSession.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="newSessionDesc" class="sr-only">Description</label>
+                        <input id="newSessionDesc" placeholder="Description" class="form-control" ng-model="newSession.description">
+                    </div>
 
-        <br/><br/>
-            <div ng-repeat="sess in sessions">
-                <li>
-                    <a href="/sessions/{{sess._id._str}}"><i class="fa fa-edit"></i><span class="nav-label">{{sess.name}}</span></a>
-                </li>
+                    <button class="btn btn-white" ng-click="createSession(newSession); newSession='';">Add</button>
+                </form>
             </div>
           </div>
+
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Current Sessions</h5>
+            </div>
+
+            <div class="ibox-content">
+              <div class="row">
+                  <div class="col-sm-9 m-b-xs">
+                      <div data-toggle="buttons" class="btn-group">
+                          <label class="btn btn-sm btn-white"> <input type="radio" id="option1" name="options"> Day </label>
+                          <label class="btn btn-sm btn-white active"> <input type="radio" id="option2" name="options"> Week </label>
+                          <label class="btn btn-sm btn-white"> <input type="radio" id="option3" name="options"> Month </label>
+                      </div>
+                  </div>
+                  <div class="col-sm-3">
+                      <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
+                                          <button type="button" class="btn btn-sm btn-primary"> Go!</button> </span></div>
+                  </div>
+              </div>
+              <div class="table-responsive">
+                  <table class="table table-striped">
+                      <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Session Name </th>
+                          <th>Teacher-in-Charge</th>
+                          <th>Date</th>
+                          <th>Action</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr ng-repeat="sess in sessions">
+                          <td>{{$index + 1}}</td>
+                          <td>{{sess.name}}</td>
+                          <td>Patrick Smith</td>
+                          <td>Oct 20, 2015</td>
+                          <td><a href="/sessions/{{sess._id._str}}"><i class="fa fa-edit text-navy"></i></a></td>
+                      </tr>
+                      </tbody>
+                  </table>
+              </div>
+
+            </div>
+          </div>
+
         </div>
     </div>
 </div>

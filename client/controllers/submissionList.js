@@ -5,7 +5,7 @@ angular.module('ClassRoom').controller('SubmissionsCtrl', ['$scope', '$meteor', 
         $scope.submissions = $meteor.collection(Submissions);
     });
 
-    $scope.$meteorSubscribe('users').then(function(subscriptionHandle){
+    $scope.$meteorSubscribe('students').then(function(subscriptionHandle){
       $scope.users = $meteor.collection(Meteor.users, false);
     });
 

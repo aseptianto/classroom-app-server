@@ -5,23 +5,60 @@
         <div class="row border-bottom" ng-include="'client/views/topbar.ng.html'"></div>
         <div class="row wrapper border-bottom white-bg page-heading" ng-include="'client/views/headbar.ng.html'"></div>
         <div class="wrapper wrapper-content">
-            <div class="row border-bottom white-bg dashboard-header">
-                <div>In the page of places</div>
-
-                Add a place
-                <form>
-                    <label>name</label>
-                    <input ng-model="newPlace.name">
-                    <button ng-click="createPlace(newPlace)">Add</button>
-                </form>
-
-                <br/><br/>
-                <div ng-repeat="place in places">
-                    <li>
-                        <a href="/places/{{place._id._str}}"><i class="fa fa-edit"></i><span class="nav-label">{{place.name}}</span></a>
-                    </li>
-                </div>
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Add New Place</h5>
             </div>
+            <div class="ibox-content">
+                <form role="form" class="form-inline">
+                    <div class="form-group">
+                        <label for="newPlaceName" class="sr-only">Place Name</label>
+                        <input id="newPlaceName" placeholder="Place Name" class="form-control" ng-model="newPlace.name">
+                    </div>
+                    <button class="btn btn-white" ng-click="createPlace(newPlace); newSession='';">Add</button>
+                </form>
+            </div>
+          </div>
+
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Current Places</h5>
+            </div>
+
+            <div class="ibox-content">
+              <div class="row">
+                  <div class="col-sm-9 m-b-xs">
+                  </div>
+                  <div class="col-sm-3">
+                      <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
+                                          <button type="button" class="btn btn-sm btn-primary"> Go!</button> </span></div>
+                  </div>
+              </div>
+              <div class="table-responsive">
+                  <table class="table table-striped">
+                      <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Place Name </th>
+                          <th>Locations</th>
+                          <th>Number of questions</th>
+                          <th>Action</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr ng-repeat="place in places">
+                          <td>{{$index + 1}}</td>
+                          <td>{{place.name}}</td>
+                          <td>Lat: Long:</td>
+                          <td>10 Qs</td>
+                          <td><a href="/places/{{place._id._str}}"><i class="fa fa-edit text-navy"></i></a></td>
+                      </tr>
+                      </tbody>
+                  </table>
+              </div>
+
+            </div>
+          </div>
         </div>
     </div>
 </div>

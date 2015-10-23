@@ -1,5 +1,5 @@
-angular.module("ClassRoom").controller("SessionDetailCtrl", ['$scope', '$stateParams', '$meteor',
-    function ($scope, $stateParams, $meteor) {
+angular.module("ClassRoom").controller("SessionDetailCtrl", ['$scope', '$stateParams', '$meteor', '$filter',
+    function ($scope, $stateParams, $meteor, $filter) {
         $scope.sessionId = $stateParams.sessionId;
 
         $scope.session = $meteor.object(Session, new Mongo.ObjectID($scope.sessionId));
@@ -19,7 +19,22 @@ angular.module("ClassRoom").controller("SessionDetailCtrl", ['$scope', '$statePa
             return Meteor.users.find({isTeacher: 0});
         }).subscribe("students");
 
-        console.log($scope.studentList);
+        $scope.userList = $meteor.collection(function () {
+            return Meteor.users.find({});
+        }).subscribe("users");
+
+
+        $scope.getName = function(id){
+            var result = $filter('filter')($scope.userList, {_id:id})[0];
+            return result.name;
+        };
+
+        $scope.getPlaceName = function(id){
+            console.log(id);
+            var result = $filter('filter')($scope.places, {_id:id})[0];
+            return result.name;
+        }
+
         $scope.addStudent = function (newStudentId) {
             console.log($scope.session.students);
             if($scope.session.students.indexOf(newStudentId) === -1 && newStudentId !== ""){
@@ -29,6 +44,10 @@ angular.module("ClassRoom").controller("SessionDetailCtrl", ['$scope', '$statePa
             else alert("student exists");
         };
 
+        $scope.removeStudent = function(studentId){
+            Session.update({_id: new Mongo.ObjectID($scope.sessionId)}, {$pull: {students: studentId}});
+        }
+
         $scope.addPlace = function (newPlaceId) {
             console.log(newPlaceId);
             if($scope.session.places.indexOf(newPlaceId) === -1 && newPlaceId !== ""){
@@ -37,5 +56,9 @@ angular.module("ClassRoom").controller("SessionDetailCtrl", ['$scope', '$statePa
             else if(newPlaceId === "");
             else alert("place exists");
         };
+
+        $scope.removePlace = function(placeId){
+            Session.update({_id: new Mongo.ObjectID($scope.sessionId)}, {$pull: {places: placeId}});
+        }
     }
 ]);

@@ -49,8 +49,8 @@
                       <tr ng-repeat="place in places">
                           <td>{{$index + 1}}</td>
                           <td>{{place.name}}</td>
-                          <td>Lat: Long:</td>
-                          <td>10 Qs</td>
+                          <td>Lat:{{place.location[0]}} Long:{{place.location[1]}}</td>
+                          <td>{{place.questions.length}} Qs</td>
                           <td><a href="/places/{{place._id._str}}"><i class="fa fa-edit text-navy"></i></a></td>
                       </tr>
                       </tbody>

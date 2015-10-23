@@ -24,8 +24,18 @@
                             <dt>Name:</dt> <dd><input ng-model="session.name"></dd>
                             <dt>Description:</dt> <dd><input ng-model="session.description"/></dd>
                             <br>
-                            <dt>Teachers:</dt> <dd><a class="text-navy" ng-repeat="teacher in session.teachers">{{teacher}} </a> </dd>
-                            <dt>Students:</dt> <dd><a class="text-navy" ng-repeat="student in session.students">{{student}} </a> </dd>
+                            <dt>Teachers:</dt>
+                            <dd>
+                                <ul>
+                                    <li class="text-navy" ng-repeat="teacher in session.teachers"> {{getName(teacher)}} </li>
+                                </ul>
+                            </dd>
+                            <dt>Students:</dt>
+                            <dd>
+                                <ul>
+                                    <li class="text-navy" ng-repeat="student in session.students">{{getName(student)}} <a ng-click="removeStudent(student)">&times;</a> </li>
+                                </ul>
+                            </dd>
                         </dl>
                     </div>
                     <div class="col-lg-7" id="cluster_info">
@@ -34,7 +44,12 @@
                             <dt>Last Updated:</dt> <dd>16.08.2014 12:15:57</dd>
                             <dt>Created:</dt> <dd> 	10.07.2014 23:36:57 </dd>
                             <br>
-                            <dt>Places:</dt> <dd> <a class="text-navy" ng-repeat="place in session.places"> {{place}} </a></dd>
+                            <dt>Places:</dt>
+                            <dd>
+                                <ul>
+                                    <li class="text-navy" ng-repeat="place in session.places">{{getPlaceName(place)}} <a ng-click="removePlace(place)">&times;</a></li>
+                                </ul>
+                            </dd>
 
                         </dl>
                     </div>

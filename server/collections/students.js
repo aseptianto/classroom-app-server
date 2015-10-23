@@ -2,6 +2,10 @@ Meteor.publish('students', function () {
     return Meteor.users.find({isTeacher: 0});
 });
 
+Meteor.publish('users', function(){
+    return Meteor.users.find({});
+})
+
 Meteor.methods({
     'addStu': function (newStu) {
         Accounts.createUser({username: newStu.username, password: newStu.password});

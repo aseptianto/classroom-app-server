@@ -8,9 +8,37 @@ angular.module("ClassRoom").controller("PlacesCtrl", ['$scope', '$meteor',
             $scope.places.save();
         };
 
-        $scope.createPlace = function(newPlace){
-            Place.insert({name: newPlace.name, questions: [], location: [], direction: ""});
-            // Meteor.call('addSession', newSession);
+
+        $scope.map = {
+            center: {
+                latitude: 22.319149,
+                longitude: 114.155440
+            },
+            zoom: 10,
+            events: {},
+            marker: {}
         };
+
+        $scope.createPlace = function(newPlace){
+            Place.insert(
+                {
+                    name: newPlace.name,
+                    questions: [],
+                    location: {
+                        center: {
+                            latitude: 22.319149,
+                            longitude: 114.155440
+                        },
+                        zoom: 10,
+                        events: {}
+                    },
+                    direction: ""
+                }
+            );
+        };
+
+        $scope.removePlace = function(placeId){
+            Place.remove({_id: new Mongo.ObjectID(placeId)});
+        }
     }
 ]);

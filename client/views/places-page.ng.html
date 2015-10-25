@@ -49,13 +49,24 @@
                       <tr ng-repeat="place in places">
                           <td>{{$index + 1}}</td>
                           <td>{{place.name}}</td>
-                          <td>Lat:{{place.location[0]}} Long:{{place.location[1]}}</td>
+                          <td>Lat:{{place.location.latitude || "Not set"}} Long:{{place.location.longitude || "Not set"}}</td>
                           <td>{{place.questions.length}} Qs</td>
-                          <td><a href="/places/{{place._id._str}}"><i class="fa fa-edit text-navy"></i></a></td>
+                          <td>
+                              <a href="/places/{{place._id._str}}"><i class="fa fa-edit text-navy"></i></a>
+                              <a ng-click="removePlace(place._id._str)">&times;</a>
+                          </td>
                       </tr>
                       </tbody>
                   </table>
               </div>
+
+                <div class="angular-google-map-container">
+                    <ui-gmap-google-map center="place.location.center || map.center" zoom="map.zoom">
+                        <ui-gmap-markers models="places" coords="'location'" click="onClicked()"
+                                         fit="true" idkey="'_id'" doRebuildAll="true">
+                        </ui-gmap-markers>
+                    </ui-gmap-google-map>
+                </div>
 
             </div>
           </div>

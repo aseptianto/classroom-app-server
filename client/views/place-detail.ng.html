@@ -16,11 +16,17 @@
                     <textarea ng-model="place.direction"></textarea>
                     <br>
                     <div class="place-details-maps">
-                        <div class="angular-google-map-container" style="height:400px;width:400px">
-                            <ui-gmap-google-map center="map.center"
-                                                events="map.events" zoom="map.zoom">
+                        <label>Coordinates: {{place.location.latitude || "Not set"}},{{place.location.longitude || "Not set"}}</label><br/>
+                        <label>Click on the map to set the coordinates</label>
+                        <div class="angular-google-map-container">
+                            <ui-gmap-google-map center="place.location.center || map.center"
+                                                events="map.events" zoom="place.location.zoom || map.zoom">
+                                <ui-gmap-marker coords="place.location" options="map.marker.options"
 
+                                                events="map.marker.events" idkey="place._id">
+                                </ui-gmap-marker>
                             </ui-gmap-google-map>
+
                         </div>
                     </div>
                 </form>

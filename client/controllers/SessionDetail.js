@@ -1,38 +1,57 @@
 angular.module("ClassRoom").controller("SessionDetailCtrl", ['$scope', '$stateParams', '$meteor', '$filter',
     function ($scope, $stateParams, $meteor, $filter) {
+        $scope.heading = {title: 'Manage Session'};
+
         $scope.sessionId = $stateParams.sessionId;
 
-        $scope.session = $meteor.object(Session, new Mongo.ObjectID($scope.sessionId));
-        $scope.session.subscribe("session");
-
-        console.dir($scope.session);
+        $meteor.subscribe("sessions").then(function(){
+            $scope.session = $meteor.object(Session, new Mongo.ObjectID($scope.sessionId));
+            console.dir($scope.session);
+        });
 
         /*$scope.session.students.forEach(function(studentId){
             var student = Meteor.users.find({_id : studentId}).fetch();
             console.log(student);
         });*/
+        $meteor.subscribe("places").then(function(){
+            $scope.places = $meteor.collection(function(){
+                return Place.find();
+            }, false);
+        });
 
-        $scope.places = $meteor.collection(Place).subscribe('places');
         //console.log($scope.places);
 
-        $scope.studentList = $meteor.collection(function () {
-            return Meteor.users.find({isTeacher: 0});
-        }).subscribe("students");
+        $meteor.subscribe("users").then(function(){
 
-        $scope.userList = $meteor.collection(function () {
-            return Meteor.users.find({});
-        }).subscribe("users");
+            $scope.userList = $meteor.collection(function(){
+                return Meteor.users.find();
+            }, false);
+
+            $scope.studentList = $meteor.collection(function(){
+                return Meteor.users.find({isTeacher:0});
+            }, false);
+
+        });
+
 
 
         $scope.getName = function(id){
-            var result = $filter('filter')($scope.userList, {_id:id})[0];
-            return result.name;
+            var result = $filter('filter')($scope.userList, {_id:id});
+
+            if(result.length > 0){
+                return result[0].name;
+            }
+            return false;
         };
 
         $scope.getPlaceName = function(id){
             console.log(id);
-            var result = $filter('filter')($scope.places, {_id:id})[0];
-            return result.name;
+            var result = $filter('filter')($scope.places, {_id:id});
+
+            if(result.length > 0){
+                return result[0].name;
+            }
+            return false;
         }
 
         $scope.addStudent = function (newStudentId) {

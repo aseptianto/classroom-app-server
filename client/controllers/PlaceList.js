@@ -2,7 +2,11 @@ angular.module("ClassRoom").controller("PlacesCtrl", ['$scope', '$meteor',
     function($scope, $meteor){
         $scope.heading = {title: 'Manage Place'};
 
-        $scope.places = $meteor.collection(Place).subscribe('places');
+        $meteor.subscribe("places").then(function(){
+            $scope.places = $meteor.collection(function(){
+                return Place.find();
+            }, false);
+        });
 
         $scope.save = function(){
             $scope.places.save();

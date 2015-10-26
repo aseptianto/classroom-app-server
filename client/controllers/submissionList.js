@@ -1,12 +1,21 @@
 angular.module('ClassRoom').controller('SubmissionsCtrl', ['$scope', '$meteor', '$window', function ($scope, $meteor, $window) {
     $scope.heading = {title: 'Submission Records'};
 
-    $scope.$meteorSubscribe('submissions').then(function(subscriptionHandle){
-        $scope.submissions = $meteor.collection(Submissions);
+    $meteor.subscribe("submissions").then(function(){
+
+        $scope.submissions = $meteor.collection(function(){
+            return Submissions.find();
+        }, false);
+
     });
 
-    $scope.$meteorSubscribe('students').then(function(subscriptionHandle){
-      $scope.users = $meteor.collection(Meteor.users, false);
+
+    $meteor.subscribe("users").then(function(){
+
+        $scope.studs = $meteor.collection(function(){
+            return Meteor.users.find({isTeacher:0});
+        }, false);
+
     });
 
     $scope.popup = function(userId){

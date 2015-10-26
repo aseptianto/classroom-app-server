@@ -1,19 +1,23 @@
 angular.module("ClassRoom").controller("StudentsCtrl", ['$scope', '$meteor',
-    function($scope, $meteor){
-        $scope.heading = {title: 'Manage Student'};
+function($scope, $meteor){
+    $scope.heading = {title: 'Manage Student'};
 
-        $scope.users = $meteor.collection(function() {
-            return Meteor.users.find({isTeacher: 0});
-        }).subscribe("students");
+    $meteor.subscribe("users").then(function(){
 
-        $scope.save = function(){
-          $scope.users.save();
-        };
+        $scope.studs = $meteor.collection(function(){
+            return Meteor.users.find({isTeacher:0});
+        }, false);
 
-        $scope.createStu = function(newStu){
-          Meteor.call('addStu', newStu); //call the server side function
-        };
-    }
+    });
+
+    $scope.save = function(stu){
+        $scope.studs.save(stu);
+    };
+
+    $scope.createStu = function(newStu){
+        Meteor.call('addStu', newStu); //call the server side function
+    };
+}
 ]);
 
 Template.body.rendered=function() {

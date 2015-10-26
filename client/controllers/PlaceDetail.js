@@ -2,8 +2,9 @@ angular.module("ClassRoom").controller("PlaceDetailCtrl", ['$scope', '$statePara
     function ($scope, $stateParams, $meteor) {
         $scope.placeId = $stateParams.placeId;
 
-        $scope.place = $meteor.object(Place, new Mongo.ObjectID($scope.placeId));
-        $scope.place.subscribe("places");
+        $meteor.subscribe("places").then(function(){
+            $scope.place = $meteor.object(Place, new Mongo.ObjectID($scope.placeId));
+        });
 
         /*
         we might need to do a change on the database

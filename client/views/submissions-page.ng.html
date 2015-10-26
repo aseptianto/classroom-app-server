@@ -8,10 +8,10 @@
           <div class="row border-bottom white-bg dashboard-header">
             <div>In the page of submissions</div>
             <table>
-              <tr ng-repeat="user in users">
-                <td>{{user.username}}</td>
+              <tr ng-repeat="stu in studs">
+                <td>{{stu.username}}</td>
                 <td></td>
-                <td><a ng-click="popup(user._id);">View</a></td>
+                <td><a ng-click="popup(stu._id);">View</a></td>
               </tr>
             </table>
             <ul ng-repeat="sub in submissions">

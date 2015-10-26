@@ -1,3 +1,4 @@
+/*
 Meteor.publish('session', function(sessionId){
     if (sessionId) {
         var session = Session.find({_id: sessionId});
@@ -13,3 +14,4 @@ Meteor.publish('session', function(sessionId){
     }
 
 });
+*/

@@ -39,7 +39,7 @@
               </div>
               <div class="ibox-content">
                 <form role="form" class="form-inline">
-                  <div ng-repeat="stu in users">
+                  <div ng-repeat="stu in studs">
                     <div class="form-group">
                         <label>Username</label>
                         <input class="form-control" ng-model="stu.username">
@@ -52,7 +52,7 @@
                         <label>Date of Birth</label>
                         <input class="form-control mdatepicker" ng-model="stu.dob">
                     </div>
-                    <button class="btn btn-white" ng-click="save()">Save</button>
+                    <button class="btn btn-white" ng-click="save(stu)">Save</button>
                   </div>
                 </form>
               </div>
@@ -61,7 +61,3 @@
       </div>
     </div>
 </div>
-
-<script>
-  $('.mdatepicker').datepicker();
-</script>

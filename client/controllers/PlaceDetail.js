@@ -68,7 +68,7 @@ angular.module("ClassRoom").controller("PlaceDetailCtrl", ['$scope', '$statePara
             $scope.place.save();
         };
 
-        $meteor.subscribe("questions").then(function () {
+        $meteor.subscribe("questions", "TFFreJLYim96gr73z").then(function () {
             $scope.questions = $meteor.collection(function () {
                 return Question.find({place: new Mongo.ObjectID($scope.placeId)});
             }, false);

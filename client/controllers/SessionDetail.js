@@ -46,7 +46,7 @@ angular.module("ClassRoom").controller("SessionDetailCtrl", ['$scope', '$statePa
 
         $scope.getPlaceName = function(id){
             console.log(id);
-            var result = $filter('filter')($scope.places, {_id:id});
+            var result = $filter('filter')($scope.places, {_id:id._str});
 
             if(result.length > 0){
                 return result[0].name;
@@ -70,14 +70,14 @@ angular.module("ClassRoom").controller("SessionDetailCtrl", ['$scope', '$statePa
         $scope.addPlace = function (newPlaceId) {
             console.log(newPlaceId);
             if($scope.session.places.indexOf(newPlaceId) === -1 && newPlaceId !== ""){
-                Session.update({_id: new Mongo.ObjectID($scope.sessionId)}, {$push: {places: newPlaceId}});
+                Session.update({_id: new Mongo.ObjectID($scope.sessionId)}, {$push: {places: new Mongo.ObjectID(newPlaceId)}});
             }
             else if(newPlaceId === "");
             else alert("place exists");
         };
 
         $scope.removePlace = function(placeId){
-            Session.update({_id: new Mongo.ObjectID($scope.sessionId)}, {$pull: {places: placeId}});
+            Session.update({_id: new Mongo.ObjectID($scope.sessionId)}, {$pull: {places: new Mongo.ObjectID(placeId)}});
         }
     }
 ]);

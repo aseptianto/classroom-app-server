@@ -76,17 +76,19 @@ angular.module("ClassRoom").controller("PlaceDetailCtrl", ['$scope', '$statePara
 
         $scope.addQ = function(newQ){
 
-          Question.insert(
-              {
-                  place: $scope.placeId,
-                  prompt: newQ.prompt,
-                  choices: {
-                    'type':0,
-                  	'data':[newQ.choiceA,newQ.choiceB,newQ.choiceC,newQ.choiceD]
-                  },
-                  answer: newQ.answer
-              }
-          );
+            var inputData = {
+                place: $scope.placeId,
+                prompt: newQ.prompt,
+                choices: {
+                    'type':newQ.type,
+                    'data':[]
+                },
+                answer: newQ.answer
+            };
+            if(newQ.type == 0){
+                inputData.choices.data = [newQ.choiceA,newQ.choiceB,newQ.choiceC,newQ.choiceD];
+            }
+          Question.insert(inputData);
         };
     }
 ]);

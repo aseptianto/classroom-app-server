@@ -15,9 +15,12 @@
                     <label>directions</label>
                     <textarea ng-model="place.direction"></textarea>
                     <br>
+
                     <div class="place-details-maps">
-                        <label>Coordinates: {{place.location.latitude || "Not set"}},{{place.location.longitude || "Not set"}}</label><br/>
+                        <label>Coordinates: {{place.location.latitude || "Not set"}},{{place.location.longitude || "Not
+                            set"}}</label><br/>
                         <label>Click on the map to set the coordinates</label>
+
                         <div class="angular-google-map-container">
                             <ui-gmap-google-map center="place.location.center || map.center"
                                                 events="map.events" zoom="place.location.zoom || map.zoom">
@@ -35,34 +38,43 @@
             </div>
 
 
-          <div class="row border-bottom white-bg dashboard-header">
-            Edit Multiple Questions
-            <ul>
-              <li>{{questions.length}}</li>
-            </ul>
-            <input type="type" placeholder="question" ng-model="newq.prompt">
-            <br>
-            <input type="type" placeholder="ChoiceA" ng-model="newq.choiceA">
-            <input type="type" placeholder="ChoiceB" ng-model="newq.choiceB">
-            <input type="type" placeholder="ChoiceC" ng-model="newq.choiceC">
-            <input type="type" placeholder="ChoiceD" ng-model="newq.choiceD">
-            <select ng-model="newq.answer">
-                <option value="">---Please select---</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-            </select>
+            <div class="row border-bottom white-bg dashboard-header">
+                Edit Multiple Questions
+                <ul>
+                    <li>{{questions.length}}</li>
+                </ul>
+                <input type="type" placeholder="question" ng-model="newq.prompt">
+                <select ng-model="newq.type">
+                    <option value="">---Please select---</option>
+                    <option value="0" selected>Multiple Choices</option>
+                    <option value="1">Text Responses</option>
+                    <option value="2">Photo Upload</option>
+                </select>
+                <br>
+                <input type="type" placeholder="ChoiceA" ng-if="newq.type == 0" ng-model="newq.choiceA">
+                <input type="type" placeholder="ChoiceB" ng-if="newq.type == 0" ng-model="newq.choiceB">
+                <input type="type" placeholder="ChoiceC" ng-if="newq.type == 0" ng-model="newq.choiceC">
+                <input type="type" placeholder="ChoiceD" ng-if="newq.type == 0" ng-model="newq.choiceD">
+                <select ng-if="newq.type == 0" ng-model="newq.answer">
+                    <option value="">---Please select---</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
 
-            <button ng-click="addQ(newq)">Add</button>
-            <br><br><br>
-            <div ng-repeat="q in questions">
-              <input type="type" ng-model="q.place">
-              <input type="type" ng-model="q.prompt">
-              <input type="type" ng-model="q.answer">
-              <input type="type" ng-model="q.choices.data">
+                <button ng-click="addQ(newq)">Add</button>
+                <br><br><br>
+
+                <div ng-repeat="q in questions">
+                    <label ng-if="q.choices.type == 0">Multiple Choice</label>
+                    <label ng-if="q.choices.type == 1">Text Response</label>
+                    <label ng-if="q.choices.type == 2">Photo Upload</label>
+                    <input type="type" ng-model="q.prompt">
+                    <input type="type" ng-model="q.answer">
+                    <input type="type" ng-model="q.choices.data">
+                </div>
             </div>
-          </div>
 
 
         </div>

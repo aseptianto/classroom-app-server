@@ -5,9 +5,22 @@ Session = new Mongo.Collection("session", {idGeneration : 'MONGO'});
 
 Place = new Mongo.Collection("place", {idGeneration: 'MONGO'});
 
+Question = new Mongo.Collection("question", {idGeneration: 'MONGO'});
+
 Place.allow({
   insert: function(userId, doc, fields, modifier){
     return true;
+  },
+  update: function(userId, doc, fields, modifier){
+    return true;
+  },
+  remove: function(userId, doc, fields, modifier){
+    return true;
+  }});
+
+Question.allow({
+  insert: function(userId, doc, fields, modifier){
+  return true;
   },
   update: function(userId, doc, fields, modifier){
     return true;

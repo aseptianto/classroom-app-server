@@ -64,10 +64,29 @@ angular.module("ClassRoom").controller("PlaceDetailCtrl", ['$scope', '$statePara
             }
         };
 
-
-
         $scope.save = function(){
             $scope.place.save();
+        };
+
+        $meteor.subscribe("questions").then(function(){
+            $scope.questions = $meteor.collection(function(){
+                return Question.find({place: $scope.placeId});
+            }, false);
+        });
+
+        $scope.addQ = function(newQ){
+
+          Question.insert(
+              {
+                  place: $scope.placeId,
+                  prompt: newQ.prompt,
+                  choices: {
+                    'type':0,
+                  	'data':[newQ.choiceA,newQ.choiceB,newQ.choiceC,newQ.choiceD]
+                  },
+                  answer: newQ.answer
+              }
+          );
         };
     }
 ]);

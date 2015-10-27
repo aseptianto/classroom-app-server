@@ -13,3 +13,7 @@ Meteor.publish('users', function(){
 Meteor.publish("submissions", function(){
     return Submissions.find();
 });
+
+Meteor.publish("questions", function(){
+    return Question.find();
+});

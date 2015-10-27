@@ -32,6 +32,38 @@
                 </form>
 
             </div>
+
+
+          <div class="row border-bottom white-bg dashboard-header">
+            Edit Multiple Questions
+            <ul>
+              <li>{{questions.length}}</li>
+            </ul>
+            <input type="type" placeholder="question" ng-model="newq.prompt">
+            <br>
+            <input type="type" placeholder="ChoiceA" ng-model="newq.choiceA">
+            <input type="type" placeholder="ChoiceB" ng-model="newq.choiceB">
+            <input type="type" placeholder="ChoiceC" ng-model="newq.choiceC">
+            <input type="type" placeholder="ChoiceD" ng-model="newq.choiceD">
+            <select ng-model="newq.answer">
+                <option value="">---Please select---</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+
+            <button ng-click="addQ(newq)">Add</button>
+            <br><br><br>
+            <div ng-repeat="q in questions">
+              <input type="type" ng-model="q.place">
+              <input type="type" ng-model="q.prompt">
+              <input type="type" ng-model="q.answer">
+              <input type="type" ng-model="q.choices.data">
+            </div>
+          </div>
+
+
         </div>
     </div>
 </div>

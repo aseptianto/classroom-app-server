@@ -21,5 +21,5 @@ function($scope, $meteor){
 ]);
 
 Template.body.rendered=function() {
-    $('.my-datepicker').datepicker();
+    $('.mdatepicker').datepicker();
 }

@@ -17,5 +17,12 @@ Meteor.methods({
     'getUserId': function (newStudentUsername) {
         if (Meteor.users.findOne({username: newStudentUsername}) == null) return -1;
         return Meteor.users.findOne({username: newStudentUsername})._id;
+    },
+
+    'getUserCurrentSession': function(studentId){
+
+        var session = Session.findOne({students: {$in:[studentId]}});
+        return session._id;
+
     }
 });

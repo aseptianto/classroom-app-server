@@ -28,3 +28,5 @@ rajit:bootstrap3-datepicker
 angularui:angular-google-maps
 yasseraudio:angular-qrcode-generator
 monbro:mongodb-mapreduce-aggregation
+cfs:gridfs
+cfs:standard-packages

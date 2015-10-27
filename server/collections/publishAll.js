@@ -11,7 +11,7 @@ Meteor.publish('users', function(){
 })
 
 Meteor.publish("submissions", function(){
-    return Submissions.find();
+    return Submission.find();
 });
 
 Meteor.publish("questions", function(){

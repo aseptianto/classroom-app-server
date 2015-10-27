@@ -6,27 +6,45 @@
         <div class="row wrapper border-bottom white-bg page-heading" ng-include="'client/views/headbar.ng.html'"></div>
         <div class="wrapper wrapper-content">
           <div class="row border-bottom white-bg dashboard-header">
-            <div>In the page of submissions</div>
-            <table>
-              <tr ng-repeat="stu in studs">
-                <td>{{stu.username}}</td>
-                <td></td>
-                <td><a ng-click="popup(stu._id);">View</a></td>
-              </tr>
-            </table>
-            <ul ng-repeat="sub in submissions">
+            <div>
+              Test Submission(For test only)
+              <input type="text" placeholder="Grade" ng-model="newSub.grade">
+              <label>question</label>
+              <select ng-model="newSub.qs">
+                  <option value="">---Please select---</option>
+                  <option ng-repeat="q in questions" value="{{q._id._str}}">{{q.prompt}}</option>
+              </select>
+              <label>student</label>
+              <select ng-model="newSub.stu">
+                  <option value="">---Please select---</option>
+                  <option ng-repeat="stu in studs" value="{{stu._id}}">{{stu.name}}</option>
+              </select>
+              <input type="text" placeholder="Data" ng-model="newSub.data">
+              <button class="btn" ng-click="addSub(newSub)">Add Submission</button>
 
-                <li>{{sub}}</li>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Last Submissions</th>
+                        <th>View Details</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="stu in studs">
+                        <td>{{$index + 1}}</td>
+                        <td>{{stu.username}}</td>
+                        <td></td>
+                        <td><a ng-click="popup(stu._id);">View</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
-                  <form>
-                    <label>sub</label>
-                    <input ng-model="sub.user">
 
-                  </form>
-                  <div class="col-xs-4 ma-add-button-container">
-                    <button class="btn" ng-click="">Add</button>
-                  </div>
-            </ul>
           </div>
         </div>
     </div>

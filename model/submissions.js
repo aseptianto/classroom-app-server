@@ -1,4 +1,4 @@
-Submissions = new Mongo.Collection("submissions");
+Submission = new Mongo.Collection("submission", {idGeneration : 'MONGO'});
 
 Session = new Mongo.Collection("session", {idGeneration : 'MONGO'});
 //Session = new Mongo.Collection("session");
@@ -40,7 +40,7 @@ Session.allow({
     return true;
   }});
 
-Submissions.allow({
+Submission.allow({
   insert: function(userId, doc, fields, modifier){
     return true;
   },

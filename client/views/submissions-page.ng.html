@@ -20,7 +20,7 @@
                   <option ng-repeat="stu in studs" value="{{stu._id}}">{{stu.name}}</option>
               </select>
               <input type="text" placeholder="Data" ng-model="newSub.data">
-              <button class="btn" ng-click="addSub(newSub)">Add Submission</button>
+              <button class="btn" ng-click="addSub(newSub); newSub='';">Add Submission</button>
 
             </div>
             <div class="table-responsive">
@@ -29,6 +29,7 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
+                        <th>Number of Submissions</th>
                         <th>Last Submissions</th>
                         <th>View Details</th>
                     </tr>
@@ -36,8 +37,9 @@
                     <tbody>
                     <tr ng-repeat="stu in studs">
                         <td>{{$index + 1}}</td>
-                        <td>{{stu.username}}</td>
-                        <td></td>
+                        <td>{{stu.name}}</td>
+                        <td>{{getSubmissionNumber(stu)}}</td>
+                        <td>{{getLastSubmission(stu)}}</td>
                         <td><a ng-click="popup(stu._id);">View</a></td>
                     </tr>
                     </tbody>

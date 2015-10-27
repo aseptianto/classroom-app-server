@@ -7,7 +7,7 @@ Meteor.publish('sessions', function(){
 });
 
 Meteor.publish('users', function(){
-    return Meteor.users.find();
+    return Meteor.users.find({}, {services: 0 });
 })
 
 Meteor.publish("submissions", function(){

@@ -19,10 +19,26 @@ Meteor.methods({
         return Meteor.users.findOne({username: newStudentUsername})._id;
     },
 
+    'addSubmissionToUserCollection': function(stuId, subId){
+        Meteor.users.update(stuId, {$push: {submissions: subId}});
+    },
+
     'getUserCurrentSession': function(studentId){
 
         var session = Session.findOne({students: {$in:[studentId]}});
         return session._id;
 
+    },
+    'getSubMapReduce': function(){
+        var map = function() {
+            emit(this.student, 1);
+        }
+        var reduce = function(key, values) {
+             return Array.sum(values);
+        };
+
+        var result = Submission.mapReduce(map, reduce, {query: {}, out: "SubMapReduce", verbose: true});
+
+        return SubMapReduce.find({},{ sort: {'subTime': -1} }).fetch();
     }
 });

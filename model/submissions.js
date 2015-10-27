@@ -7,6 +7,8 @@ Place = new Mongo.Collection("place", {idGeneration: 'MONGO'});
 
 Question = new Mongo.Collection("question", {idGeneration: 'MONGO'});
 
+SubMapReduce = new Mongo.Collection("SubMapReduce");
+
 Place.allow({
   insert: function(userId, doc, fields, modifier){
     return true;

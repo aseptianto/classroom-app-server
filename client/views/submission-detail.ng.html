@@ -1,5 +1,10 @@
-<div>{{stuId}}</div>
+<div class="white-bg">
+    <div>Student Name: {{stu.name}}</div>
 
-<div ng-repeat="sub in submissions">
-  {{sub}}
+    <div ng-repeat="sub in submissions">
+        Question {{$index + 1}}:<br>
+        {{getQuestion(sub.question)}}<br>
+        Student Ans: {{sub.data.content}}
+    </div>
+    <br>
 </div>

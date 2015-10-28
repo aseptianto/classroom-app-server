@@ -5,78 +5,109 @@
         <div class="row border-bottom" ng-include="'client/views/topbar.ng.html'"></div>
         <div class="row wrapper border-bottom white-bg page-heading" ng-include="'client/views/headbar.ng.html'"></div>
         <div class="wrapper wrapper-content">
-            <div class="row border-bottom white-bg dashboard-header">
-                <div>{{place.name}}</div>
+            <div class="ibox float-e-margins">
 
-                <form>
-                    <label>name</label>
-                    <input ng-model="place.name">
-                    <br>
-                    <label>directions</label>
-                    <textarea ng-model="place.direction"></textarea>
-                    <br>
-
-                    <div class="place-details-maps">
-                        <label>Coordinates: {{place.location.latitude || "Not set"}},{{place.location.longitude || "Not
-                            set"}}</label><br/>
-                        <label>Click on the map to set the coordinates</label>
-
-                        <div class="angular-google-map-container">
-                            <ui-gmap-google-map center="place.location.center || map.center"
-                                                events="map.events" zoom="place.location.zoom || map.zoom">
-                                <ui-gmap-marker coords="place.location" options="map.marker.options"
-
-                                                events="map.marker.events" idkey="place._id">
-                                </ui-gmap-marker>
-                            </ui-gmap-google-map>
-
-                        </div>
-                        <qrcode data="{{place._id._str}}" size="274" download></qrcode>
-                    </div>
-                </form>
-
-            </div>
-
-
-            <div class="row border-bottom white-bg dashboard-header">
-                Edit Multiple Questions
-                <ul>
-                    <li>{{questions.length}}</li>
-                </ul>
-                <input type="type" placeholder="question" ng-model="newq.prompt">
-                <select ng-model="newq.type">
-                    <option value="">---Please select---</option>
-                    <option value="0" selected>Multiple Choices</option>
-                    <option value="1">Text Responses</option>
-                    <option value="2">Photo Upload</option>
-                </select>
-                <br>
-                <input type="type" placeholder="ChoiceA" ng-if="newq.type == 0" ng-model="newq.choiceA">
-                <input type="type" placeholder="ChoiceB" ng-if="newq.type == 0" ng-model="newq.choiceB">
-                <input type="type" placeholder="ChoiceC" ng-if="newq.type == 0" ng-model="newq.choiceC">
-                <input type="type" placeholder="ChoiceD" ng-if="newq.type == 0" ng-model="newq.choiceD">
-                <select ng-if="newq.type == 0" ng-model="newq.answer">
-                    <option value="">---Please select---</option>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
-                </select>
-
-                <button ng-click="addQ(newq)">Add</button>
-                <br><br><br>
-
-                <div ng-repeat="q in questions">
-                    <label ng-if="q.choices.type == 0">Multiple Choice</label>
-                    <label ng-if="q.choices.type == 1">Text Response</label>
-                    <label ng-if="q.choices.type == 2">Photo Upload</label>
-                    <input type="type" ng-model="q.prompt">
-                    <input type="type" ng-model="q.answer">
-                    <input type="type" ng-model="q.choices.data">
+                <div class="ibox-title">
+                    <h1>Place: {{place.name}}</h1>
                 </div>
-            </div>
 
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <dt>Name:</dt> <dd><input ng-model="place.name" class="form-control"></dd>
+                            <dt>Directions:</dt> <dd><textarea ng-model="place.direction" class="form-control"></textarea></dd>
+                            <br>
+                            <div>
+                                <qrcode style="margin: 0 auto;" data="{{place._id._str}}" size="300" download></qrcode>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <dt>Coordinates:</dt> <dd>{{place.location.latitude || "Not set"}},{{place.location.longitude || "Not
+                                set"}}</dd>
+                            <dt>Click on the map to set the coordinates:</dt>
+                            <div class="angular-google-map-container">
+                                <ui-gmap-google-map center="place.location.center || map.center" events="map.events" zoom="place.location.zoom || map.zoom">
+                                <ui-gmap-marker coords="place.location" options="map.marker.options" events="map.marker.events" idkey="place._id"></ui-gmap-marker>
+                                </ui-gmap-google-map>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ibox-title">
+                    <h2>Edit Multiple Questions</h2>
+                </div>
+
+                <div class="ibox-content">
+                    <div class="row">
+                        <h3 class="col-md-3">Add a new question: </h3>
+                        <div class="col-md-3">
+                            <select ng-model="newq.type" class="form-control">
+                                <option value="">---Please select---</option>
+                                <option value="0" selected>Multiple Choices</option>
+                                <option value="1">Text Responses</option>
+                                <option value="2">Photo Upload</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <textarea class="form-control" placeholder="Question" ng-model="newq.prompt"></textarea>
+                    </div>
+
+                    <div class="row">
+                        <input type="text" class="form-control" placeholder="ChoiceA" ng-if="newq.type == 0" ng-model="newq.choiceA">
+                        <input type="text" class="form-control" placeholder="ChoiceB" ng-if="newq.type == 0" ng-model="newq.choiceB">
+                        <input type="text" class="form-control" placeholder="ChoiceC" ng-if="newq.type == 0" ng-model="newq.choiceC">
+                        <input type="text" class="form-control" placeholder="ChoiceD" ng-if="newq.type == 0" ng-model="newq.choiceD">
+                    </div>
+
+                    <div class="row">
+                        <label ng-if="newq.type == 0">Choose the answer:</label>
+                        <select ng-if="newq.type == 0" ng-model="newq.answer" class="form-control">
+                            <option value="">---Please select---</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                        </select>
+                        <button class="btn btn-primary pull-right" ng-if="newq.type == 0" ng-click="addQ(newq)">Add</button>
+                    </div>
+                </div>
+
+                <div class="ibox-title">
+                    <h2>Total number of questions: {{questions.length}}</h2>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Type</th>
+                                <th>Question</th>
+                                <th>Answer</th>
+                                <th>Choices</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="q in questions">
+                                <td>{{$index + 1}}</td>
+                                <td ng-if="q.choices.type == 0">Multiple Choice</td>
+                                <td ng-if="q.choices.type == 1">Text Response</td>
+                                <td ng-if="q.choices.type == 2">Photo Upload</td>
+                                <td><input type="type" ng-model="q.prompt" class="form-control"></td>
+                                <td><input type="type" ng-model="q.answer" class="form-control"></td>
+                                <td><input type="type" ng-model="q.choices.data" class="form-control"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
 
         </div>
+
     </div>
 </div>

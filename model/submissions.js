@@ -33,11 +33,11 @@ Images.allow({
     return true;
   }
 });
-
+/*
 Meteor.publish('images', function(){
   return Images.find({});
 });
-
+*/
 Place.allow({
   insert: function(userId, doc, fields, modifier){
     return true;

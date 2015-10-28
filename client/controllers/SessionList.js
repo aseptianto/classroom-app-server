@@ -14,9 +14,9 @@ angular.module("ClassRoom").controller("SessionsCtrl", ['$scope', '$meteor',
         $scope.createSession = function(newSession){
             console.log(Meteor.userId());
             if(Meteor.userId() != null)
-                Session.insert({name: newSession.name, description: newSession.description, teachers: [Meteor.userId()], students: []});
+                Session.insert({name: newSession.name, description: newSession.description, teachers: [Meteor.userId()], students: [], places: []});
             else
-                Session.insert({name: newSession.name, description: newSession.description, teachers: [], students: []});
+                Session.insert({name: newSession.name, description: newSession.description, teachers: [], students: [], places: []});
            // Meteor.call('addSession', newSession);
         };
     }

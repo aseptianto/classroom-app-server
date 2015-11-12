@@ -1,0 +1,71 @@
+<div id="wrapper">
+   <div ng-include="'client/views/sidebar.ng.html'"></div>
+
+   <div id="page-wrapper" class="gray-bg dashbard-1">
+       <div class="row border-bottom" ng-include="'client/views/topbar.ng.html'"></div>
+       <div class="row wrapper border-bottom white-bg page-heading" ng-include="'client/views/headbar.ng.html'"></div>
+
+       <div class="wrapper wrapper-content">
+           <div class="row">
+               <div class="col-lg-3" style="padding-left:0; padding-right:0;">
+                   <div class="ibox float-e-margins">
+                       <div class="ibox-content">
+
+                           <div class="activity-manager">
+
+                              <h2 style="text-align:center;">Depolyed Activities</h2>
+                              <ul class="category-list folder-list m-b-md" style="padding: 0">
+                                  <li><input type="checkbox" class="pull-left" style="margin: 8px 8px 0 0;"><a style="margin-left:20px;" href="#"> Ocean Park </a></li>
+                              </ul>
+
+                               <div class="space-25"></div>
+
+                               <div>
+                                   <div class="pull-right">
+                                       <button type="button" class="btn btn-primary btn-sm">Depoly</button>
+                                       <a href="" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Add Activity"><i class="fa fa-plus"></i> </a>
+                                   </div>
+                                   <h2>Activities</h2>
+
+                               </div>
+                               <div class="clearfix"></div>
+                               <ul class="folder-list m-b-md" style="padding: 0">
+                                   <li><input type="checkbox" class="pull-left" style="margin: 8px 8px 0 0;"><a style="margin-left:20px;" href="#"> DisneyLand </a></li>
+
+                               </ul>
+
+
+                               <div class="clearfix"></div>
+
+
+                           </div>
+
+                       </div>
+                   </div>
+               </div>
+
+               <div class="col-lg-9 animated fadeInRight" style="padding-left:0; padding-right:0;">
+                   <div class="mail-box-header">
+                       <div class="pull-right tooltip-demo">
+                           <a href="" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Add Questions"><i class="fa fa-plus"></i> </a>
+                       </div>
+                       <h2>
+                           Manage Questions
+                       </h2>
+                   </div>
+                   <div class="mail-box">
+                       content...
+                   </div>
+               </div>
+           </div>
+       </div>
+
+   </div>
+</div>
+<script>
+$(function(){
+   $('.activity-manager').slimScroll({
+       height: '800px'
+   });
+});
+</script>

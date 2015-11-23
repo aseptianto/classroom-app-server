@@ -31,3 +31,4 @@ monbro:mongodb-mapreduce-aggregation
 cfs:gridfs
 cfs:standard-packages
 rochal:slimscroll
+charcolios:angular-ckeditor

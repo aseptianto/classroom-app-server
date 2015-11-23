@@ -1,6 +1,5 @@
 <div id="wrapper">
    <div ng-include="'client/views/sidebar.ng.html'"></div>
-
    <div id="page-wrapper" class="gray-bg dashbard-1">
        <div class="row border-bottom" ng-include="'client/views/topbar.ng.html'"></div>
        <div class="row wrapper border-bottom white-bg page-heading" ng-include="'client/views/headbar.ng.html'"></div>
@@ -29,8 +28,9 @@
 
                                </div>
                                <div class="clearfix"></div>
-                               <ul class="folder-list m-b-md" style="padding: 0">
-                                   <li><input type="checkbox" class="pull-left" style="margin: 8px 8px 0 0;"><a style="margin-left:20px;" href="#"> DisneyLand </a></li>
+                               <ul class="folder-list m-b-md" ng-repeat="session in sessions" style="padding: 0">
+                                   <li><input type="checkbox" class="pull-left" style="..."><a style="..." href="/managePlacenQs/{{session._id._str}}"> {{session.name}} </a></li>
+                                   <!--<li><input type="checkbox" class="pull-left" style="margin: 8px 8px 0 0;"><a style="margin-left:20px;" href="#"> DisneyLand </a></li>-->
 
                                </ul>
 
@@ -47,14 +47,43 @@
                <div class="col-lg-9 animated fadeInRight" style="padding-left:0; padding-right:0;">
                    <div class="mail-box-header">
                        <div class="pull-right tooltip-demo">
-                           <a href="" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Add Questions"><i class="fa fa-plus"></i> </a>
+                           <button type="button" class="btn btn-primary btn-sm">Depoly</button>
+                           <!--<a href="" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Add Questions"><i class="fa fa-plus"></i> </a>-->
                        </div>
                        <h2>
-                           Manage Questions
+                           Activity info <span ng-if="sessionId != null">for {{getSessionName(sessionId)}} </span>
                        </h2>
                    </div>
-                   <div class="mail-box">
-                       content...
+                   <div class="mail-box" ng-if="sessionId != null">
+                       <label>name</label> <input type="text" ng-model="session.name"><br/>
+                       <label>instruction</label>
+                           <!--<script src="ckeditor.js"></script>-->
+                           <!--<script src="angular-ckeditor.js"></script>-->
+                           <!--<div ckeditor="options" ng-model="session.instruction" ready="onReady()"></div>-->
+                       <textarea ng-model="session.instruction"></textarea>
+                       <label>places</label><br/>
+                       <ul ng-repeat="place in places">
+                           <li><a href="/managePlacenQs/{{sessionId}}/place/{{place._id._str}}">{{place.name}}</a> <a href="#">x</a></li>
+                       </ul>
+                   </div>
+                   <div class="mail-box" ng-if="sessionId == null">
+                       Click on one of the activities or add a new activity
+                   </div>
+                   <div class="mail-box-header">
+                       <div class="pull-right tooltip-demo">
+                           <a href="" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Add Questions" ng-if="placeId != null"><i class="fa fa-plus"></i> </a>
+                       </div>
+                       <h2>
+                           Manage Questions <span ng-if="placeId != null">in {{ getPlaceName(placeId) }}</span>
+                       </h2>
+                   </div>
+                   <div class="mail-box" ng-if="placeId == null">
+                       Click on a place in "Activity Info" to show place details
+                   </div>
+                   <div class="mail-box" ng-if="placeId != null">
+                    <ul ng-repeat="question in questions">
+                        <li>{{question.prompt}}</li>
+                    </ul>
                    </div>
                </div>
            </div>

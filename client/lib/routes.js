@@ -24,7 +24,18 @@ angular.module('ClassRoom').config(['$urlRouterProvider', '$stateProvider', '$lo
         })
         .state('managePlacenQs', {
           url: '/managePlacenQs',
-          templateUrl: 'client/views/managePlacenQs.ng.html'
+          templateUrl: 'client/views/managePlacenQs.ng.html',
+          controller: 'ManagePlaceQsCtrl'
+        })
+        .state('managePlacenQsDetails', {
+            url: '/managePlacenQs/:sessionId',
+            templateUrl: 'client/views/managePlacenQs.ng.html',
+            controller: 'ManagePlaceQsCtrl'
+        })
+        .state('managePlaceQsQuestions', {
+            url: '/managePlacenQs/:sessionId/place/:placeId',
+            templateUrl: 'client/views/managePlacenQs.ng.html',
+            controller: 'ManagePlaceQsCtrl'
         })
 
 

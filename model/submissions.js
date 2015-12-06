@@ -1,11 +1,12 @@
-Submission = new Mongo.Collection("submission", {idGeneration : 'MONGO'});
+Submission = new Mongo.Collection("submission");
 
-Session = new Mongo.Collection("session", {idGeneration : 'MONGO'});
+Activity = new Mongo.Collection("activity");
+//Session = new Mongo.Collection("session", {idGeneration : 'MONGO'});
 //Session = new Mongo.Collection("session");
 
-Place = new Mongo.Collection("place", {idGeneration: 'MONGO'});
+Tips = new Mongo.Collection("tips");
 
-Question = new Mongo.Collection("question", {idGeneration: 'MONGO'});
+Question = new Mongo.Collection("question");
 
 SubMapReduce = new Mongo.Collection("SubMapReduce");
 
@@ -38,7 +39,7 @@ Meteor.publish('images', function(){
   return Images.find({});
 });
 */
-Place.allow({
+Tips.allow({
   insert: function(userId, doc, fields, modifier){
     return true;
   },
@@ -60,7 +61,7 @@ Question.allow({
     return true;
   }});
 
-Session.allow({
+Activity.allow({
   insert: function(userId, doc, fields, modifier){
   return true;
   },

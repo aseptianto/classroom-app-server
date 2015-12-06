@@ -1,18 +1,18 @@
-Meteor.publish('places', function(userId){
+Meteor.publish('tips', function(userId){
     if(userId){
-        var session = Session.find({students: {$in:[userId]}}).fetch();
-        var placeIds = session[0].places; //just do it lol
+        var activity = Activity.find({students: {$in:[userId]}}).fetch();
+        var placeIds = activity[0].places; //just do it lol
        // return Place.find({_id: { $in: new Mongo.ObjectID(placeIds) }} );
-        return Place.find({_id: { $in: placeIds }});
+        return Tips.find({_id: { $in: placeIds }});
     }
-    return Place.find();
+    return Tips.find();
 });
 
-Meteor.publish('sessions', function(userId){
+Meteor.publish('activities', function(userId){
     if(userId){
-        return Session.find({students: {$in:[userId]}});
+        return Activity.find({students: {$in:[userId]}});
     }
-    return Session.find();
+    return Activity.find();
 });
 
 Meteor.publish('users', function(){
@@ -28,8 +28,8 @@ Meteor.publish("submissions", function(userId){
 
 Meteor.publish("questions", function(userId){
     if(userId){
-        var session = Session.find({students: {$in:[userId]}}).fetch();
-        var placeIds = session[0].places; //just do it lol
+        var activity = Activity.find({students: {$in:[userId]}}).fetch();
+        var placeIds = activity[0].places; //just do it lol
         //var places = Place.find({_id: { $in: placeIds }}, {_id:1}).fetch();
         //console.log(places);
        // console.log(Question.find({place: {$in:placeIds}}).fetch());

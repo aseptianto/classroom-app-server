@@ -40,5 +40,10 @@ Meteor.methods({
         var result = Submission.mapReduce(map, reduce, {query: {}, out: "SubMapReduce", verbose: true});
 
         return SubMapReduce.find({},{ sort: {'subTime': -1} }).fetch();
-    }
+    },
+
+    'removeActivityQuestions': function (activityId){
+        Question.remove({"activity" : activityId});
+        console.log("removed");
+    },
 });

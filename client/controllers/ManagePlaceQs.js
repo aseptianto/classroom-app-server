@@ -1,5 +1,5 @@
-angular.module("ClassRoom").controller("ManagePlaceQsCtrl", ['$scope', '$stateParams', '$meteor', '$filter',
-    function($scope, $stateParams, $meteor, $filter){
+angular.module("ClassRoom").controller("ManagePlaceQsCtrl", ['$scope', '$stateParams', '$meteor', '$filter', '$location',
+    function($scope, $stateParams, $meteor, $filter, $location){
         $scope.heading = {title: 'Manage Place and Questions'};
 
         // first part, return all activities and do things with them
@@ -62,23 +62,20 @@ angular.module("ClassRoom").controller("ManagePlaceQsCtrl", ['$scope', '$statePa
             // do a meteor call apparently for this to work
             Meteor.call("removeActivityQuestions", activityId);
             Activity.remove({_id: activityId});
-            if (!location.origin)
-                location.origin = location.protocol + "//" + location.host;
-            window.location.href = location.origin + "/managePlacenQs";
+            $location.path('/managePlacenQs');
+            $scope.$apply();
         };
 
         $scope.deployActivity = function(activityId){
             $scope.activity.status = 1;
-            if (!location.origin)
-                location.origin = location.protocol + "//" + location.host;
-            window.location.href = location.origin + "/managePlacenQs";
+            $location.path('/managePlacenQs');
+            $scope.$apply();
         }
 
         $scope.undeployActivity = function(activityId){
             $scope.activity.status = 0;
-            if (!location.origin)
-                location.origin = location.protocol + "//" + location.host;
-            window.location.href = location.origin + "/managePlacenQs";
+            $location.path('/managePlacenQs');
+            $scope.$apply();
         }
 
         function isQuestionOrderExist(order, questions){
@@ -158,6 +155,8 @@ angular.module("ClassRoom").controller("ManagePlaceQsCtrl", ['$scope', '$statePa
         $scope.removeQuestion = function(questionId){
             Question.remove({_id: questionId});
             $scope.reorderQuestions();
+            $location.path('/managePlacenQs/' + $stateParams.activityId);
+            $scope.$apply();
         };
 
         // third part, show question detail for a question clicked above
@@ -255,7 +254,9 @@ angular.module("ClassRoom").controller("ManagePlaceQsCtrl", ['$scope', '$statePa
             Tips.insert(tips, function(err, docsInserted){
                 Question.update({_id: $scope.question._id}, {$set: {tips: docsInserted}});
             });
-            location.reload();
+            $meteor.subscribe("tips").then(function() {
+                $scope.activeTips = $meteor.object(Tips, $scope.question.tips);
+            });
         };
 
         $scope.removeTips = function(tipsId){
@@ -268,7 +269,12 @@ angular.module("ClassRoom").controller("ManagePlaceQsCtrl", ['$scope', '$statePa
             if($scope.question.use_previous_tips){
                 $scope.question.tips = null; // just for safety
             }
-            location.reload();
+            var earlierQuestions = Question.find({ activity: $scope.question.activity, order: { $lt: $scope.question.order } }, {sort: {order: 1}}).fetch();
+            for(var i = earlierQuestions.length - 1; i >= 0; i--){
+                if(earlierQuestions[i].tips != null){
+                    $scope.previousTips = $meteor.object(Tips, earlierQuestions[i].tips);
+                }
+            }
         };
 
         $meteor.subscribe("tips").then(function(){

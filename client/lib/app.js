@@ -1,4 +1,4 @@
-angular.module('ClassRoom', ['angular-meteor', 'ui.router', 'uiGmapgoogle-maps', 'monospaced.qrcode', 'ckeditor']);
+angular.module('ClassRoom', ['angular-meteor', 'ui.router', 'uiGmapgoogle-maps', 'monospaced.qrcode', 'ckeditor', 'ui.sortable']);
 
 function onReady() {
   angular.bootstrap(document, ['ClassRoom']);

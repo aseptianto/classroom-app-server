@@ -5,6 +5,27 @@
         <div class="row wrapper border-bottom white-bg page-heading" ng-include="'client/views/headbar.ng.html'"></div>
 
         <div class="wrapper wrapper-content">
+
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h2>Activities</h2>
+                </div>
+
+                <div class="ibox-content">
+                    <!--<div class="table-responsive">
+                        <table class="table">
+                            <tr></tr>
+                        </table>
+                    </div>-->
+                    <ul>
+                        <li ng-repeat="activity in activities"><a ng-click="popup(activity._id);">{{activity.name}}</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+
         </div>
     </div>
 </div>

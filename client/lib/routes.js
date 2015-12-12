@@ -14,13 +14,19 @@ angular.module('ClassRoom').config(['$urlRouterProvider', '$stateProvider', '$lo
                 url: '/404',
                 templateUrl: 'client/views/404.ng.html'
             })
-            .state('recordsByStudent', {
-                url: '/recordsByStudent',
+            .state('recordsByStudents', {
+                url: '/recordsByStudents',
                 templateUrl: 'client/views/recordsByStudents.ng.html'
             })
-            .state('recordsByPlace', {
-                url: '/recordsByPlace',
-                templateUrl: 'client/views/recordsByActivities.ng.html'
+            .state('recordsByActivities', {
+                url: '/recordsByActivities',
+                templateUrl: 'client/views/recordsByActivities.ng.html',
+                controller: 'recordsByActivitiesCtrl'
+            })
+            .state('recordsByActivitiesDetails', {
+                url: '/recordsByActivities/:activityId',
+                templateUrl: 'client/views/recordsByActivitiesDetails.ng.html',
+                controller: 'recordsByActivitiesDetailsCtrl'
             })
             .state('managePlacenQs', {
                 url: '/managePlacenQs',

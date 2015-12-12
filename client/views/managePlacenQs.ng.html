@@ -188,21 +188,21 @@
                                     </div>
 
                                     <div>
-                                        <h3>Opinion Setting: </h3>
+                                        <h3>Option Setting: </h3>
                                         <div ng-disabled="activity.status == 1">
-                                            <label>Opinion 1: </label>
+                                            <label>Option 1: </label>
                                             <text-angular ng-model="question.choices[0].content"></text-angular>
                                         </div>
                                         <div ng-disabled="activity.status == 1">
-                                            <label>Opinion 2: </label>
+                                            <label>Option 2: </label>
                                             <text-angular ng-model="question.choices[1].content"></text-angular>
                                         </div>
                                         <div ng-if="question.numChoices > 2" ng-disabled="activity.status == 1">
-                                            <label>Opinion 3: </label>
+                                            <label>Option 3: </label>
                                             <text-angular ng-model="question.choices[2].content"></text-angular>
                                         </div>
                                         <div ng-if="question.numChoices > 3" ng-disabled="activity.status == 1">
-                                            <label>Opinion 4: </label>
+                                            <label>Option 4: </label>
                                             <text-angular ng-model="question.choices[3].content"></text-angular>
                                         </div>
                                         <!--<input type="text" ng-model="question.choices[0].content"
@@ -216,7 +216,7 @@
                                     </div>
 
                                         <div class="form-group">
-                                            <label>Opinion Answer: </label>
+                                            <label>Option Answer: </label>
                                             <select class="form-control" name="mcAnswer" ng-model="question.answer" ng-disabled="activity.status == 1"
                                                     ng-options="option.value as option.name for option in getAnswerOptions()"></select>
                                         </div>

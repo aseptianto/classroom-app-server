@@ -4,11 +4,11 @@
         <div class="row border-bottom" ng-include="'client/views/topbar.ng.html'"></div>
         <div class="row wrapper border-bottom white-bg page-heading" ng-include="'client/views/headbar.ng.html'"></div>
 
-        <div class="wrapper wrapper-content">
+        <div class="wrapper wrapper-content" ng-controller="CkeditorCtrl">
             <div class="row">
                 <div class="col-lg-3" style="padding-left:0; padding-right:0;">
                     <div class="ibox float-e-margins">
-                        <div class="ibox-content">
+                        <div class="ibox-content" style="border-color: #e7eaec; border-width: 0 4px 0 0;">
 
                             <div class="activity-manager">
 
@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="col-lg-9 animated fadeInRight" style="padding-left:0; padding-right:0;">
-                    <div class="mail-box-header">
+                    <div class="ibox-title" style="border-width:0">
                         <div class="pull-right tooltip-demo">
                             <span ng-if="activity != null && activity.status == 0">
                                 <button type="button" class="btn btn-primary btn-sm" ng-click="removeActivity(activityId)">Remove</button>
@@ -67,13 +67,16 @@
                             Activity info <span ng-if="activity != null">for {{getActivityName(activityId)}}</span>
                         </h2>
                     </div>
-                    <div class="mail-box" ng-if="activityId != null">
-                        <label>name</label> <input type="text" ng-model="activity.name" ng-disabled="activity.status == 1"><br/>
-                        <label>instruction</label>
+                    <div class="ibox-content" ng-if="activityId != null">
+                        <label>Name</label> <input type="text" ng-model="activity.name" ng-disabled="activity.status == 1"><br/>
+                        <label>Instruction</label>
                         <!--<script src="ckeditor.js"></script>-->
                         <!--<script src="angular-ckeditor.js"></script>-->
                         <!--<div ckeditor="options" ng-model="activity.instruction" ready="onReady()"></div>-->
-                        <textarea ng-model="activity.instruction" ng-disabled="activity.status == 1"></textarea><br/>
+
+                         <div ckeditor="options" ng-model="activity.instruction" ready="onReady()" ng-disabled="activity.status == 1"></div>
+
+                        <!-- <textarea ng-model="activity.instruction" ng-disabled="activity.status == 1"></textarea><br/> -->
                         <label>questions</label><br/>
                         <a href="#" ng-click="addQuestion()" ng-if="activity.status == 0">Add new question for this activity</a>
                         <!--<ul ui-sortable ng-model="items">-->
@@ -103,7 +106,10 @@
                         Click on a question in "Activity Info" to show question details
                     </div>
                     <div class="mail-box" ng-if="questionId != null"><label>{{question}}</label>
-                        <label>Prompt</label> <input type="text" ng-model="question.prompt" ng-disabled="activity.status == 1" select-on-click /><br/>
+
+                        <label>Prompt</label>
+                        <div ckeditor="options" ng-model="question.prompt" ready="onReady()" ng-disabled="activity.status == 1" select-on-click></div>
+                        <!--<input type="text" ng-model="question.prompt" ng-disabled="activity.status == 1" select-on-click /><br/>-->
                         <label>Type</label>
                         <select name="questionType" ng-model="question.type" ng-disabled="activity.status == 1"
                                 ng-options="option.value as option.name for option in typeOptions">
@@ -127,6 +133,7 @@
                             <input type="text" ng-model="question.choices[1].content" ng-disabled="activity.status == 1"/><br/>
                             <input type="text" ng-model="question.choices[2].content" ng-if="question.numChoices > 2" ng-disabled="activity.status == 1"/><br/>
                             <input type="text" ng-model="question.choices[3].content" ng-if="question.numChoices > 3" ng-disabled="activity.status == 1"/><br/>
+                            <!--<div ckeditor="options" ng-model="question.choices.content" ready="onReady()" ng-disabled="activity.status == 1"></div>-->
                             <label>Answer</label>
                             <select name="mcAnswer" ng-model="question.answer" ng-disabled="activity.status == 1"
                                     ng-options="option.value as option.name for option in getAnswerOptions()"></select>
@@ -144,7 +151,8 @@
                                     <label>Or create a new one below..</label>
                                     <form role="form" class="form-inline">
                                         <label>Tag</label><input type="text" ng-model="newTips.name" ng-disabled="activity.status == 1"><label ng-if="tipsNameEmpty == true">Tips name is empty!</label><br/>
-                                        <label>Direction</label><textarea ng-model="newTips.direction" ng-disabled="activity.status == 1"></textarea><br/>
+                                        <label>Direction</label><!--<textarea ng-model="newTips.direction" ng-disabled="activity.status == 1"></textarea><br/>-->
+                                        <div ckeditor="options" ng-model="newTips.direction" ready="onReady()" ng-disabled="activity.status == 1"></div>
                                         <button class="btn btn-white" ng-click="createTips(newTips);" ng-disabled="activity.status == 1">Add</button>
                                     </form>
                                 </span>
@@ -157,7 +165,8 @@
                                     <qrcode style="margin: 0 auto;" data="{{question.tips}}" size="300" download></qrcode>
                                 </div>
                                 <label>Tag</label><input type="text" ng-model="activeTips.name" ng-disabled="activity.status == 1"><br/>
-                                <label>Direction</label><textarea ng-model="activeTips.direction" ng-disabled="activity.status == 1"></textarea><br/>
+                                <label>Direction</label><!--<textarea ng-model="activeTips.direction" ng-disabled="activity.status == 1"></textarea><br/>-->
+                                <div ckeditor="options" ng-model="activeTips.direction" ready="onReady()" ng-disabled="activity.status == 1"></div>
                             </span>
                             <span ng-if="question.use_previous_tips">
                                 <label>Previous tips info</label><br/>

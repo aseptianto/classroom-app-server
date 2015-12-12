@@ -377,4 +377,18 @@ angular.module("ClassRoom").controller("ManagePlaceQsCtrl", ['$scope', '$statePa
             });
         }
     };
+}])
+
+.controller('CkeditorCtrl', ['$scope', function ($scope) {
+
+  // Editor options.
+  $scope.options = {
+    allowedContent: true,
+    entities: false
+  };
+
+  // Called when the editor is completely ready.
+  $scope.onReady = function () {
+    // ...
+  };
 }]);

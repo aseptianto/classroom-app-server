@@ -16,11 +16,11 @@ angular.module('ClassRoom').config(['$urlRouterProvider', '$stateProvider', '$lo
             })
             .state('recordsByStudent', {
                 url: '/recordsByStudent',
-                templateUrl: 'client/views/recordsByStudent.ng.html'
+                templateUrl: 'client/views/recordsByStudents.ng.html'
             })
             .state('recordsByPlace', {
                 url: '/recordsByPlace',
-                templateUrl: 'client/views/recordsByPlace.ng.html'
+                templateUrl: 'client/views/recordsByActivities.ng.html'
             })
             .state('managePlacenQs', {
                 url: '/managePlacenQs',

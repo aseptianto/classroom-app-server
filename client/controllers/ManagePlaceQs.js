@@ -1,6 +1,6 @@
 angular.module("ClassRoom").controller("ManagePlaceQsCtrl", ['$scope', '$stateParams', '$meteor', '$filter', '$location',
     function($scope, $stateParams, $meteor, $filter, $location){
-        $scope.heading = {title: 'Manage Place and Questions'};
+        $scope.heading = {title: 'Manage Activities and Questions'};
 
         $scope.strip = function(html) {
             var tmp = document.createElement("DIV");

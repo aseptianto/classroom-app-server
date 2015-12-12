@@ -4,7 +4,7 @@
         <div class="row border-bottom" ng-include="'client/views/topbar.ng.html'"></div>
         <div class="row wrapper border-bottom white-bg page-heading" ng-include="'client/views/headbar.ng.html'"></div>
 
-        <div class="wrapper wrapper-content" ng-controller="CkeditorCtrl">
+        <div class="wrapper wrapper-content">
             <div class="row">
                 <div class="col-lg-3" style="padding-left:0; padding-right:0;">
                     <div class="ibox float-e-margins">
@@ -12,14 +12,14 @@
 
                             <div class="activity-manager">
 
-                                <h2 style="text-align:center;">Depolyed Activities</h2>
-                                <!--<ul class="category-list folder-list m-b-md" style="padding: 0">-->
-                                    <!--<li><input type="checkbox" class="pull-left" style="margin: 8px 8px 0 0;"><a style="margin-left:20px;" href="#"> Ocean Park </a></li>-->
-                                <!--</ul>-->
-                                <ul class="folder-list m-b-md" ng-repeat="activity in deployedActivities" style="padding: 0">
-                                    <li><input type="checkbox" class="pull-left" style="..."><a style="..." href="/managePlacenQs/{{activity._id}}"> {{activity.name}} <span ng-if="activity.name == ''">No Name</span> </a></li>
-                                    <!--<li><input type="checkbox" class="pull-left" style="margin: 8px 8px 0 0;"><a style="margin-left:20px;" href="#"> DisneyLand </a></li>-->
-
+                                <h2 style="text-align:center;">Deployed Activities</h2>
+                                <ul class="folder-list m-b-md" ng-repeat="activity in deployedActivities"
+                                    style="padding: 0">
+                                    <li>
+                                        <input type="checkbox" class="pull-left" style="...">
+                                        <a style="..." href="/managePlacenQs/{{activity._id}}">
+                                        {{activity.name}} <span ng-if="activity.name == ''">No Name</span> </a>
+                                    </li>
                                 </ul>
 
                                 <div class="space-25"></div>
@@ -34,10 +34,11 @@
 
                                 </div>
                                 <div class="clearfix"></div>
-                                <ul class="folder-list m-b-md" ng-repeat="activity in undeployedActivities" style="padding: 0">
-                                    <li><input type="checkbox" class="pull-left" style="..."><a style="..." href="/managePlacenQs/{{activity._id}}"> {{activity.name}} <span ng-if="activity.name == ''">No Name</span> </a></li>
-                                    <!--<li><input type="checkbox" class="pull-left" style="margin: 8px 8px 0 0;"><a style="margin-left:20px;" href="#"> DisneyLand </a></li>-->
-
+                                <ul class="folder-list m-b-md" ng-repeat="activity in undeployedActivities"
+                                    style="padding: 0">
+                                    <li><input type="checkbox" class="pull-left" style="..."><a style="..."
+                                                                                                href="/managePlacenQs/{{activity._id}}">
+                                        {{activity.name}} <span ng-if="activity.name == ''">No Name</span> </a></li>
                                 </ul>
 
 
@@ -54,62 +55,62 @@
                     <div class="ibox-title" style="border-width:0">
                         <div class="pull-right tooltip-demo">
                             <span ng-if="activity != null && activity.status == 0">
-                                <button type="button" class="btn btn-primary btn-sm" ng-click="removeActivity(activityId)">Remove</button>
-                                <button type="button" class="btn btn-primary btn-sm" ng-click="deployActivity(activityId)">Depoly</button>
+                                <button type="button" class="btn btn-primary btn-sm"
+                                        ng-click="removeActivity(activityId)">Remove
+                                </button>
+                                <button type="button" class="btn btn-primary btn-sm"
+                                        ng-click="deployActivity(activityId)">Depoly
+                                </button>
                             </span>
                             <span ng-if="activity != null && activity.status == 1">
-                                <button type="button" class="btn btn-primary btn-sm" ng-click="undeployActivity(activityId)">Undepoly</button>
+                                <button type="button" class="btn btn-primary btn-sm"
+                                        ng-click="undeployActivity(activityId)">Undepoly
+                                </button>
 
                             </span>
-                            <!--<a href="" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Add Questions"><i class="fa fa-plus"></i> </a>-->
                         </div>
                         <h2>
                             Activity info <span ng-if="activity != null">for {{getActivityName(activityId)}}</span>
                         </h2>
                     </div>
                     <div class="ibox-content" ng-if="activityId != null">
-                        <label>Name</label> <input type="text" ng-model="activity.name" ng-disabled="activity.status == 1"><br/>
+                        <label>Name</label> <input type="text" ng-model="activity.name"
+                                                   ng-disabled="activity.status == 1"><br/>
                         <label>Instruction</label>
-                        <!--<script src="ckeditor.js"></script>-->
-                        <!--<script src="angular-ckeditor.js"></script>-->
-                        <!--<div ckeditor="options" ng-model="activity.instruction" ready="onReady()"></div>-->
+                        <div text-angular ng-model="activity.instruction" ng-disabled="activity.status == 1" ta-text-editor-class="border-around" ta-html-editor-class="border-around"></div>
 
-                         <div ckeditor="options" ng-model="activity.instruction" ready="onReady()" ng-disabled="activity.status == 1"></div>
-
-                        <!-- <textarea ng-model="activity.instruction" ng-disabled="activity.status == 1"></textarea><br/> -->
                         <label>questions</label><br/>
-                        <a href="#" ng-click="addQuestion()" ng-if="activity.status == 0">Add new question for this activity</a>
-                        <!--<ul ui-sortable ng-model="items">-->
-                            <!--<li ng-repeat="item in items">{{ item }}</li>-->
-                        <!--</ul>-->
+                        <a href="#" ng-click="addQuestion()" ng-if="activity.status == 0">Add new question for this
+                            activity</a>
+
                         <ul ui-sortable="sortableOptions" ng-model="questions" ng-mouseenter="setOptions()">
-                            <li ng-repeat="question in questions"><a data-id="{{question._id}}" href="/managePlacenQs/{{activityId}}/question/{{question._id}}">{{question.order}}. {{question.prompt}}<span ng-if="question.prompt == ''">No Name</span></a>
+                            <li ng-repeat="question in questions"><a data-id="{{question._id}}"
+                                                                     href="/managePlacenQs/{{activityId}}/question/{{question._id}}">{{question.order}}.
+                                {{strip(question.prompt)}}<span ng-if="question.prompt == ''">No Name</span></a>
                                 <a href="#" ng-click="removeQuestion(question._id)" ng-if="activity.status == 0">x</a>
                             </li>
                         </ul>
-                        <!--<ul ng-repeat="question in questions">-->
-                            <!--<li><a href="/managePlacenQs/{{activityId}}/question/{{question._id}}">{{question.order}}. {{question.prompt}}<span ng-if="question.prompt == ''">No Name</span></a> <a href="#" ng-click="removeQuestion(question._id)">x</a></li>-->
-                        <!--</ul>-->
+
                     </div>
                     <div class="mail-box" ng-if="activity == null">
                         Click on one of the activities or add a new activity
                     </div>
                     <div class="mail-box-header">
                         <div class="pull-right tooltip-demo">
-                            <a href="" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Add Questions" ng-if="placeId != null"><i class="fa fa-plus"></i> </a>
+                            <a href="" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top"
+                               title="Add Questions" ng-if="placeId != null"><i class="fa fa-plus"></i> </a>
                         </div>
                         <h2>
-                            Manage Question <span ng-if="questionId != null">{{question.prompt}}</span>
+                            Manage Question <span ng-if="questionId != null">{{strip(question.prompt)}}</span>
                         </h2>
                     </div>
                     <div class="mail-box" ng-if="questionId == null">
                         Click on a question in "Activity Info" to show question details
                     </div>
-                    <div class="mail-box" ng-if="questionId != null"><label>{{question}}</label>
+                    <div class="mail-box" ng-if="questionId != null">
 
                         <label>Prompt</label>
-                        <div ckeditor="options" ng-model="question.prompt" ready="onReady()" ng-disabled="activity.status == 1" select-on-click></div>
-                        <!--<input type="text" ng-model="question.prompt" ng-disabled="activity.status == 1" select-on-click /><br/>-->
+                        <text-angular ng-model="question.prompt" ng-disabled="activity.status == 1"></text-angular>
                         <label>Type</label>
                         <select name="questionType" ng-model="question.type" ng-disabled="activity.status == 1"
                                 ng-options="option.value as option.name for option in typeOptions">
@@ -126,53 +127,67 @@
                             </select>
                             <br/>
                             <label>Choices</label><br/>
-                            <!--<ul ng-repeat="choice in question.choices">-->
-                                <!--<input type="text" ng-model="choice.content"/>-->
-                            <!--</ul>-->
-                            <input type="text" ng-model="question.choices[0].content" ng-disabled="activity.status == 1"/><br/>
-                            <input type="text" ng-model="question.choices[1].content" ng-disabled="activity.status == 1"/><br/>
-                            <input type="text" ng-model="question.choices[2].content" ng-if="question.numChoices > 2" ng-disabled="activity.status == 1"/><br/>
-                            <input type="text" ng-model="question.choices[3].content" ng-if="question.numChoices > 3" ng-disabled="activity.status == 1"/><br/>
-                            <!--<div ckeditor="options" ng-model="question.choices.content" ready="onReady()" ng-disabled="activity.status == 1"></div>-->
+                            <input type="text" ng-model="question.choices[0].content"
+                                   ng-disabled="activity.status == 1"/><br/>
+                            <input type="text" ng-model="question.choices[1].content"
+                                   ng-disabled="activity.status == 1"/><br/>
+                            <input type="text" ng-model="question.choices[2].content" ng-if="question.numChoices > 2"
+                                   ng-disabled="activity.status == 1"/><br/>
+                            <input type="text" ng-model="question.choices[3].content" ng-if="question.numChoices > 3"
+                                   ng-disabled="activity.status == 1"/><br/>
                             <label>Answer</label>
                             <select name="mcAnswer" ng-model="question.answer" ng-disabled="activity.status == 1"
                                     ng-options="option.value as option.name for option in getAnswerOptions()"></select>
                             </span>
-                            <br/><br/>
-                            <label>Tips</label><br/>
+                        <br/><br/>
+                        <label>Tips</label><br/>
                             <span ng-if="question.tips == null">
                                 <label>No tips for this question yet</label><br/>
-                                <label>Use Previous Tips (two/more consecutive questions with the same tips will make multiple questions for that single qr code)</label><br/>
+                                <label>Use Previous Tips (two/more consecutive questions with the same tips will make
+                                    multiple questions for that single qr code)</label><br/>
                                 <span ng-if="canPreviousTips()">
                                     <label ng-if="canPreviousTips()">Use Previous Tips</label>
-                                    <input type="checkbox" ng-model="question.use_previous_tips" ng-disabled="activity.status == 1" ng-change="onCheckPreviousTips()"/>
+                                    <input type="checkbox" ng-model="question.use_previous_tips"
+                                           ng-disabled="activity.status == 1" ng-change="onCheckPreviousTips()"/>
                                 </span><br/>
                                 <span ng-if="!question.use_previous_tips">
                                     <label>Or create a new one below..</label>
                                     <form role="form" class="form-inline">
-                                        <label>Tag</label><input type="text" ng-model="newTips.name" ng-disabled="activity.status == 1"><label ng-if="tipsNameEmpty == true">Tips name is empty!</label><br/>
-                                        <label>Direction</label><!--<textarea ng-model="newTips.direction" ng-disabled="activity.status == 1"></textarea><br/>-->
-                                        <div ckeditor="options" ng-model="newTips.direction" ready="onReady()" ng-disabled="activity.status == 1"></div>
-                                        <button class="btn btn-white" ng-click="createTips(newTips);" ng-disabled="activity.status == 1">Add</button>
+                                        <label>Tag</label><input type="text" ng-model="newTips.name"
+                                                                 ng-disabled="activity.status == 1">
+                                        <label ng-if="tipsNameEmpty == true">Tips name is empty!</label><br/>
+                                        <label>Direction</label>
+                                        <text-angular ng-model="newTips.direction"
+                                                      ng-disabled="activity.status == 1"></text-angular>
+
+                                        <button class="btn btn-white" ng-click="createTips(newTips);"
+                                                ng-disabled="activity.status == 1">Add
+                                        </button>
                                     </form>
                                 </span>
                             </span>
                             <span ng-if="activeTips != null">
                                 <label>You have created the tips</label><br/>
-                                <button ng-click="removeTips(question.tips)" ng-disabled="activity.status == 1">Remove tips</button><br/>
+                                <button ng-click="removeTips(question.tips)" ng-disabled="activity.status == 1">Remove
+                                    tips
+                                </button><br/>
                                 <label>QR Code</label><br/>
                                 <div>
-                                    <qrcode style="margin: 0 auto;" data="{{question.tips}}" size="300" download></qrcode>
+                                    <qrcode style="margin: 0 auto;" data="{{question.tips}}" size="300"
+                                            download></qrcode>
                                 </div>
-                                <label>Tag</label><input type="text" ng-model="activeTips.name" ng-disabled="activity.status == 1"><br/>
-                                <label>Direction</label><!--<textarea ng-model="activeTips.direction" ng-disabled="activity.status == 1"></textarea><br/>-->
-                                <div ckeditor="options" ng-model="activeTips.direction" ready="onReady()" ng-disabled="activity.status == 1"></div>
+                                <label>Tag</label><input type="text" ng-model="activeTips.name"
+                                                         ng-disabled="activity.status == 1"><br/>
+                                <label>Direction</label>
+                                <text-angular ng-model="activeTips.direction"
+                                              ng-disabled="activity.status == 1"></text-angular>
                             </span>
                             <span ng-if="question.use_previous_tips">
                                 <label>Previous tips info</label><br/>
                                 <label>QR Code</label><br/>
                                 <div>
-                                    <qrcode style="margin: 0 auto;" data="{{previousTips._id}}" size="300" download></qrcode>
+                                    <qrcode style="margin: 0 auto;" data="{{previousTips._id}}" size="300"
+                                            download></qrcode>
                                 </div>
                                 <label>Tag: {{previousTips.name}}</label><br/>
                                 <label>Direction: {{previousTips.direction}}</label><br/>
@@ -185,7 +200,7 @@
     </div>
 </div>
 <script>
-    $(function(){
+    $(function () {
         $('.activity-manager').slimScroll({
             height: '800px'
         });

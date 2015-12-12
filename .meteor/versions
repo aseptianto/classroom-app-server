@@ -35,7 +35,6 @@ cfs:storage-adapter@0.2.3
 cfs:tempstore@0.1.5
 cfs:upload-http@0.0.20
 cfs:worker@0.1.4
-charcolios:angular-ckeditor@1.0.0
 check@1.0.6
 coffeescript@1.0.10
 dburles:mongo-collection-instances@0.3.4
@@ -66,7 +65,6 @@ less@2.5.0_3
 livedata@1.0.15
 localstorage@1.0.5
 logging@1.0.8
-lsun:ckeditor@4.5.4
 meteor@1.1.9
 meteor-base@1.0.1
 minifiers@1.1.7

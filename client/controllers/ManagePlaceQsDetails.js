@@ -1,4 +1,4 @@
-angular.module("ClassRoom").controller("ManagePlaceQsCtrl", ['$scope', '$stateParams', '$meteor', '$filter', '$location',
+angular.module("ClassRoom").controller("ManagePlaceQsDetailsCtrl", ['$scope', '$stateParams', '$meteor', '$filter', '$location',
     function($scope, $stateParams, $meteor, $filter, $location){
         $scope.heading = {title: 'Manage Place and Questions'};
 

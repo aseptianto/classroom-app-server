@@ -1,4 +1,4 @@
-angular.module("ClassRoom").controller("ManagePlaceQsCtrl", ['$scope', '$stateParams', '$meteor', '$filter', '$location',
+angular.module("ClassRoom").controller("ManagePlaceQsQuestionsCtrl", ['$scope', '$stateParams', '$meteor', '$filter', '$location',
     function($scope, $stateParams, $meteor, $filter, $location){
         $scope.heading = {title: 'Manage Place and Questions'};
 
@@ -73,19 +73,19 @@ angular.module("ClassRoom").controller("ManagePlaceQsCtrl", ['$scope', '$statePa
             Meteor.call("removeActivityQuestions", activityId);
             Activity.remove({_id: activityId});
             $location.path('/managePlacenQs');
-            //$scope.$apply();
+            $scope.$apply();
         };
 
         $scope.deployActivity = function(activityId){
             $scope.activity.status = 1;
             $location.path('/managePlacenQs');
-            //$scope.$apply();
+            $scope.$apply();
         }
 
         $scope.undeployActivity = function(activityId){
             $scope.activity.status = 0;
             $location.path('/managePlacenQs');
-            //$scope.$apply();
+            $scope.$apply();
         }
 
         function isQuestionOrderExist(order, questions){
@@ -166,7 +166,7 @@ angular.module("ClassRoom").controller("ManagePlaceQsCtrl", ['$scope', '$statePa
             Question.remove({_id: questionId});
             $scope.reorderQuestions();
             $location.path('/managePlacenQs/' + $stateParams.activityId);
-            //$scope.$apply();
+            $scope.$apply();
         };
 
         // third part, show question detail for a question clicked above

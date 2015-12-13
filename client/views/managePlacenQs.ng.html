@@ -135,7 +135,7 @@
                             </span>
                             <ul class="list-group clear-list m-t" ui-sortable="sortableOptions" ng-model="questions" ng-mouseenter="setOptions()">
                                 <li ng-repeat="question in questions" ng-class="question.order <= 1 ? 'list-group-item fist-item': 'list-group-item'">
-                                    <a data-id="{{question._id}}" href="/managePlacenQs/{{activityId}}/question/{{question._id}}#manageQsBox">{{question.order}}. {{question.prompt}}
+                                    <a data-id="{{question._id}}" href="/managePlacenQs/{{activityId}}/question/{{question._id}}#manageQsBox">{{question.order}}. {{strip(question.prompt)}}
                                         <span ng-if="question.prompt == ''">No Name</span>
                                     </a>
                                     <a ng-click="removeQuestion(question._id)" ng-if="activity.status == 0">x</a>

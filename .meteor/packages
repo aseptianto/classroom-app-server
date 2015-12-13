@@ -32,3 +32,5 @@ cfs:gridfs
 cfs:standard-packages
 rochal:slimscroll
 interwebs:ui-sortable
+shammar13:busboy
+meteorhacks:picker

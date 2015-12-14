@@ -8,7 +8,7 @@ Meteor.startup(function(){
             'student':'u3fsT5SWxPiDg5Hxr',
             'subtime': new Date(),
             'data': 'Elephane',
-            'teacher_response': 2,
+            'teacher_response': -1,
             'response_detail': 'I love it'
             },
             {

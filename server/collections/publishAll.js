@@ -24,9 +24,12 @@ Meteor.publish('users', function () {
     return Meteor.users.find({}, {services: 0});
 });
 */
-Meteor.publish("submissions", function (userId) {
-    if (userId) {
+Meteor.publish("submissions", function (userId, activityId) {
+    if (userId && !activityId) {
         return Submission.find({student: {$in: [userId]}});
+    }
+    if (userId && activityId) {
+        return Submission.find({student: {$in: [userId]}, activity: {$in: [activityId]}});
     }
     return Submission.find();
 });

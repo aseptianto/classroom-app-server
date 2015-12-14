@@ -174,5 +174,14 @@ Meteor.methods({
             }
         });
         Tips.remove({"_id" : tipsId});
+    },
+
+    'setTeacherResponse': function(submissionId, type, detail){
+        if(type != -1){
+            Submission.update({_id: submissionId}, {$set: {teacher_response: type}});
+        }
+        if(type == 2){
+            Submission.update({_id: submissionId}, {$set: {response_detail: detail}});
+        }
     }
 });

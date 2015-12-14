@@ -1,1 +1,17 @@
-Detail Report
+<div class="white-bg">
+    <h1>Detail Report</h1>
+    <div>Student: {{students[0].username}}</div>
+    <div>Activity: {{activities[0].name}}</div>
+
+    <div class="item" ng-repeat="question in questions">
+        <div class="message">
+            <h4>Question {{$index + 1}}:</h4>
+            <p ng-bind-html="question.prompt"></p>
+        </div>
+        <div class="alert alert-warning">
+            <h4>Student Answer:</h4>
+            {{getSubmissionAns(question._id)}}
+        </div>
+     </div>
+
+</div>

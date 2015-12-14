@@ -7,6 +7,67 @@ Meteor.publish('users', function(){
     return Meteor.users.find({});
 })
 */
+
+Meteor.method("get-activity-list", function(){
+    return JSON.stringify(Activity.find({status: 1}).fetch());
+},
+    {
+        url: "get-activity-list",
+        httpMethod: "get"
+    });
+
+Meteor.method("get-question-list", function(activityId){
+        var questions = Question.find({activity: activityId}, {sort: {order: 1}}).fetch();
+        var result = [];
+        console.log(questions);
+        // for each questions
+        // case 1 tips is null and use_previous_tips == false
+        // make a batch of one question for that question and push it
+        // case 2 tips is not null
+        // create new batch, put that question
+        // traverse to the rest of questions, while use_previous_tips == true, add question to batch
+        // when get use_previous_tips == false or tips != null or index reached end, break then push to result
+        // remember to decrement i by 1 before leaving this while
+        for(var i = 0; i < questions.length; i++){
+            var questionBatch = [];
+            if(questions[i].tips == null && questions[i].use_previous_tips == false){
+                questionBatch.push(questions[i]);
+                //console.log("push " + questions[i].order);
+                result.push(questionBatch);
+                //console.log("done batch");
+            }
+            else if(questions[i].tips != null){
+                questionBatch.push(questions[i]);
+                //console.log("push " + questions[i].order);
+                i++;
+                while(i < questions.length && questions[i].use_previous_tips == true){
+                    questionBatch.push(questions[i]);
+                    //console.log("push " + questions[i].order);
+                    i++;
+                }
+                result.push(questionBatch);
+                //console.log("done batch");
+                if(i == questions.length) break;
+                i--;
+            }
+        }
+        return JSON.stringify(result);
+    },
+    {
+        url: "get-question-list/:0",
+        httpMethod: "get"
+    });
+
+Meteor.method("get-tips", function(tipsId){
+        return JSON.stringify(Tips.findOne({_id: tipsId}));
+    },
+    {
+        url: "get-tips/:0",
+        httpMethod: "get"
+    });
+
+
+
 Meteor.methods({
     'addStu': function (newStu) {
         Accounts.createUser({username: newStu.username, password: newStu.password});

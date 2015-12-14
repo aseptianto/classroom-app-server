@@ -2,6 +2,10 @@
     .slimScrollBar{display:block !important;}
 </style>
 <div id="wrapper">
+    <video width="320" height="240" controls>
+        <source src="{{video}}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
     <div ng-include="'client/views/sidebar.ng.html'"></div>
     <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="row border-bottom" ng-include="'client/views/topbar.ng.html'"></div>

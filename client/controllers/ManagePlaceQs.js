@@ -2,6 +2,8 @@ angular.module("ClassRoom").controller("ManagePlaceQsCtrl", ['$scope', '$statePa
     function($scope, $stateParams, $meteor, $filter, $location){
         $scope.heading = {title: 'Manage Activities and Questions'};
 
+        $scope.video = "submission/video1ready.mp4";
+
         $scope.strip = function(html) {
             var tmp = document.createElement("DIV");
             tmp.innerHTML = html;

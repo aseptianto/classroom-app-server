@@ -20,6 +20,7 @@ angular
 angularui:angular-ui-router
 twbs:bootstrap
 less
+check
 natestrauser:font-awesome
 accounts-password
 accounts-ui
@@ -34,3 +35,5 @@ rochal:slimscroll
 interwebs:ui-sortable
 shammar13:busboy
 meteorhacks:picker
+simple:rest
+simple:rest-accounts-password

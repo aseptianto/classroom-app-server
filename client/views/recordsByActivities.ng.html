@@ -5,24 +5,28 @@
         <div class="row wrapper border-bottom white-bg page-heading" ng-include="'client/views/headbar.ng.html'"></div>
 
         <div class="wrapper wrapper-content">
-
-
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h2>Activities</h2>
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="ibox box-primary">
+                        <h3 class="ibox-title">Depolyed Activities List</h3>
+                        <div class="ibox-content">
+                            <li ng-repeat="activity in deployedActivities"><a ng-click="popup('recordsByActivities/'+activity._id);">{{activity.name}}</a></li>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="ibox-content">
-                    <!--<div class="table-responsive">
-                        <table class="table">
-                            <tr></tr>
-                        </table>
-                    </div>-->
-                    <ul>
-                        <li ng-repeat="activity in activities"><a ng-click="popup(activity._id);">{{activity.name}}</a></li>
-                    </ul>
+                <div class="col-md-6">
+                    <div class="ibox box-primary">
+                        <h3 class="ibox-title">Undepolyed Activities List</h3>
+                        <div class="ibox-content">
+                            <ul>
+                                <li ng-repeat="activity in undeployedActivities"><a ng-click="popup('recordsByActivities/'+activity._id);">{{activity.name}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-
             </div>
 
 

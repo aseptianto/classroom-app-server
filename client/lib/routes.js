@@ -16,7 +16,13 @@ angular.module('ClassRoom').config(['$urlRouterProvider', '$stateProvider', '$lo
             })
             .state('recordsByStudents', {
                 url: '/recordsByStudents',
-                templateUrl: 'client/views/recordsByStudents.ng.html'
+                templateUrl: 'client/views/recordsByStudents.ng.html',
+                controller: 'recordsByStudentsCtrl'
+            })
+            .state('recordsByStudentsDetails', {
+                url: '/recordsByStudents/:stuId/:activityId',
+                templateUrl: 'client/views/recordsByStudentsDetails.ng.html'
+
             })
             .state('recordsByActivities', {
                 url: '/recordsByActivities',

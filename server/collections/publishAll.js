@@ -16,12 +16,24 @@ Meteor.publish('activities', function (userId) {
 });
 
 Meteor.publish('users', function () {
-    return Meteor.users.find({}, {services: 0});
+    return Meteor.users.find();
 });
 
+/*
+Meteor.publish('users', function () {
+    return Meteor.users.find({}, {services: 0});
+});
+*/
 Meteor.publish("submissions", function (userId) {
     if (userId) {
         return Submission.find({student: {$in: [userId]}});
+    }
+    return Submission.find();
+});
+
+Meteor.publish("submissionsByActivity", function (activityId) {
+    if (activityId) {
+        return Submission.find({activity: {$in: [activityId]}});
     }
     return Submission.find();
 });
@@ -34,6 +46,13 @@ Meteor.publish("questions", function (userId) {
         //console.log(places);
         // console.log(Question.find({place: {$in:placeIds}}).fetch());
         return Question.find({place: {$in: placeIds}});
+    }
+    return Question.find();
+});
+
+Meteor.publish("questionsByActivity", function (activityId) {
+    if (activityId) {
+        return Question.find({activity: {$in: [activityId]}});
     }
     return Question.find();
 });

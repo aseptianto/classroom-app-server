@@ -2,86 +2,26 @@
     Questions-Students Table
     {{activityId}}
     <div class="table-responsive">
-        <table class="table">
+        <table class="table" style="height:100%;">
             <thead>
                 <tr>
                     <th>
                         #
                     </th>
-                    <th>
-                        Student A
-                    </th>
-                    <th>
-                        Student B
-                    </th>
-                    <th>
-                        Student A
-                    </th>
-                    <th>
-                        Student B
-                    </th>
-                    <th>
-                        Student A
-                    </th>
-                    <th>
-                        Student B
-                    </th>
-                    <th>
-                        Student A
-                    </th>
-                    <th>
-                        Student B
-                    </th>
-                    <th>
-                        Student A
-                    </th>
-                    <th>
-                        Student B
-                    </th>
-                    <th>
-                        Student A
-                    </th>
-                    <th>
-                        Student B
-                    </th>
-                    <th>
-                        Student A
-                    </th>
-                    <th>
-                        Student B
-                    </th>
-                    <th>
-                        Student A
-                    </th>
-                    <th>
-                        Student B
-                    </th>
-                    <th>
-                        Student A
-                    </th>
-                    <th>
-                        Student B
+                    <th ng-repeat="student in students">
+                        {{student.username}}
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th>Q1</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>Q2</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr ng-repeat="q in questions">
+                    <th>Q{{$index + 1}}</th>
+                    <!--<td ng-repeat="submission in submissions| filter:{'question':q._id}">
+                        <span ng-if="submission.data">{{submission.data}}</span>
+                    </td>-->
+                    <td ng-repeat="student in students">
+                        <span ng-repeat="submission in submissions| filter:{'question':q._id, 'student':student._id}">{{submission.data}}</span>
+                    </td>
                 </tr>
             </tbody>
         </table>

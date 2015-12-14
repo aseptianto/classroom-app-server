@@ -42,7 +42,7 @@ var fs = Npm.require("fs"),
     os = Npm.require("os"),
     path = Npm.require("path");
 
-Picker.route("/add-numbers-now", function (params, req, res, next) {
+Picker.route("/upload-file", function (params, req, res, next) {
     if (req.method === 'POST') {
         var busboy = new Busboy({headers: req.headers});
         busboy.on("file", function(fieldname, file, filename, encoding, mimetype) {

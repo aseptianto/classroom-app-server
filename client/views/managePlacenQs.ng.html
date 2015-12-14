@@ -2,10 +2,6 @@
     .slimScrollBar{display:block !important;}
 </style>
 <div id="wrapper">
-    <video width="320" height="240" controls>
-        <source src="{{video}}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
     <div ng-include="'client/views/sidebar.ng.html'"></div>
     <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="row border-bottom" ng-include="'client/views/topbar.ng.html'"></div>
@@ -140,7 +136,7 @@
                             <ul class="list-group clear-list m-t" ui-sortable="sortableOptions" ng-model="questions" ng-mouseenter="setOptions()">
                                 <li ng-repeat="question in questions" ng-class="question.order <= 1 ? 'list-group-item fist-item': 'list-group-item'">
                                     <a data-id="{{question._id}}" href="/managePlacenQs/{{activityId}}/question/{{question._id}}#manageQsBox">{{question.order}}. {{strip(question.prompt)}}
-                                        <span ng-if="question.prompt == ''">No Name</span>
+                                        <span ng-if="strip(question.prompt) == ''">No Name</span>
                                     </a>
                                     <a ng-click="removeQuestion(question._id)" ng-if="activity.status == 0">x</a>
                                 </li>
@@ -250,7 +246,7 @@
                                                 </div>
                                                 <div class="row text-center">
                                                     <button class="btn btn-primary pull-right" style="margin-right:18px;" ng-click="createTips(newTips);"
-                                                        ng-disabled="activity.status == 1">Save All Changes</button>
+                                                        ng-disabled="activity.status == 1">Add Tag</button>
                                                 </div>
 
                                         </span>

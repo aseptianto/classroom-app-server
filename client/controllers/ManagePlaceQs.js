@@ -82,13 +82,13 @@ angular.module("ClassRoom").controller("ManagePlaceQsCtrl", ['$scope', '$statePa
             $scope.activity.status = 1;
             $location.path('/managePlacenQs');
             //$scope.$apply();
-        }
+        };
 
         $scope.undeployActivity = function(activityId){
             $scope.activity.status = 0;
             $location.path('/managePlacenQs');
             //$scope.$apply();
-        }
+        };
 
         function isQuestionOrderExist(order, questions){
             for(var i = 0; i < questions.length; i++){
@@ -125,10 +125,27 @@ angular.module("ClassRoom").controller("ManagePlaceQsCtrl", ['$scope', '$statePa
             for(var i = 0; i < $scope.questions.length; i++){
                 $scope.questions[i].order = (i+1);
             }
+            console.log($scope.questions);
+            // those with use_previous_question must be checked
+            // simple, look for those with use_previous_question true, then check the previous question
+            // if previous question does not have tips or use_previous_question, set to false
+            // also for first question, it must be false
+            if($scope.questions.length == 0) return;
+            //console.log($scope.questions);
+            $scope.questions[0].use_previous_tips = false;
+            for(var i = 1; i < $scope.questions.length; i++){
+                if($scope.questions[i].use_previous_tips){
+                    if($scope.questions[i-1].tips == null || $scope.questions[i-1].use_previous_tips == false){
+                        $scope.questions[i].use_previous_tips = false;
+                    }
+                }
+            }
+            //console.log($scope.questions);
         };
 
         $scope.setOptions = function(){
-            $scope.sortableOptions.disabled = ($scope.activity && $scope.activity.status == 1);
+            //$scope.sortableOptions.disabled = ($scope.activity && $scope.activity.status == 1);
+            $scope.sortableOptions.disabled = true;
         };
 
         $scope.sortableOptions = {
@@ -138,7 +155,7 @@ angular.module("ClassRoom").controller("ManagePlaceQsCtrl", ['$scope', '$statePa
             stop: function(e, ui){
                 $scope.reorderQuestions();
             },
-            disabled: false
+            disabled: true
         };
 
         $scope.addQuestion = function(){
@@ -376,17 +393,17 @@ angular.module("ClassRoom").controller("ManagePlaceQsCtrl", ['$scope', '$statePa
         }
     }
 ])
-    // highlight text input on click
-    .directive('selectOnClick', ['$window', function ($window) {
-        return {
-            restrict: 'A',
-            link: function (scope, element, attrs) {
-                element.on('click', function () {
-                    if (!$window.getSelection().toString()) {
-                        // Required for mobile Safari
-                        this.setSelectionRange(0, this.value.length)
-                    }
-                });
-            }
-        };
-    }])
+    //// highlight text input on click
+    //.directive('selectOnClick', ['$window', function ($window) {
+    //    return {
+    //        restrict: 'A',
+    //        link: function (scope, element, attrs) {
+    //            element.on('click', function () {
+    //                if (!$window.getSelection().toString()) {
+    //                    // Required for mobile Safari
+    //                    this.setSelectionRange(0, this.value.length)
+    //                }
+    //            });
+    //        }
+    //    };
+    //}])

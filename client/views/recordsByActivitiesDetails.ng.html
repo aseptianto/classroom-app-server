@@ -1,6 +1,6 @@
 <div class="white-bg">
     Questions-Students Table
-    <h1>{{activity[0].name}}</h1>
+    <h1>Activity: {{activity[0].name}}</h1>
     <div class="table-responsive">
         <table class="table" id="questionsStudentsTable">
             <thead>
@@ -15,17 +15,27 @@
             </thead>
             <tbody>
                 <tr ng-repeat="q in questions">
-                    <th>Q{{$index + 1}}</th>
+                    <th><div>Q{{$index + 1}}</div></th>
                     <!--<td ng-repeat="submission in submissions| filter:{'question':q._id}">
                         <span ng-if="submission.data">{{submission.data}}</span>
                     </td>-->
                     <td ng-repeat="student in students">
                         <div ng-repeat="submission in submissions| filter:{'question':q._id, 'student':student._id}">
-                            {{submission.data}}
-                            <div ng-if="q.type != 0 ">
-                                <button class="btn" ng-click="setTeacherResponse(submission._id, 1)">Y</button>
-                                <button class="btn" ng-click="setTeacherResponse(submission._id, 0)">X</button>
-                                <button class="btn" ng-click="setTeacherResponse(submission._id, 2, 'test')">O</button>
+                            <div ng-if="q.type == 0">
+                                MC:
+                                <i ng-class="checkAnswer(q, submission) ? 'fa fa-check' : 'fa fa-times'"></i>
+                            </div>
+                            <div ng-if="q.type != 0 " id="teacherFeedback">
+                                <div style="width: 145px; height:105px; overflow: auto;">{{submission.data.content}}</div>
+                                <div class="alert alert-warning" style="padding:0px;">
+                                    Feedback:
+                                    <i ng-class="submission.teacher_response == 1 ? 'fa fa-smile-o fa-lg text-warning': 'fa fa-smile-o'" ng-click="setTeacherResponse(submission._id, 1)"></i>
+                                    <i ng-class="submission.teacher_response == 0 ? 'fa fa-frown-o fa-lg text-warning': 'fa fa-frown-o'" ng-click="setTeacherResponse(submission._id, 0)"></i>
+                                    <i ng-class="submission.teacher_response == 2 ? 'fa fa-circle-o fa-lg text-warning': 'fa fa-circle-o'" ng-click="optionClick=true; setTeacherResponse(submission._id, 2)"></i>
+                                    <div>
+                                        <input style="width:145px;" type="text" ng-show="optionClick" ng-model="submission.response_detail">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </td>

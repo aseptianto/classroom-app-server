@@ -26,14 +26,19 @@ angular.module("ClassRoom").controller("recordsByActivitiesDetailsCtrl", ['$scop
         $meteor.subscribe("submissionsByActivity", $scope.activityId).then(function(){
             $scope.submissions = $meteor.collection(function(){
                 return Submission.find();
-            }, false);
+            }, true);
 
             //console.log($scope.submissions);
         });
 
-        $scope.setTeacherResponse = function(submissionId, type, detail){
-            Meteor.call('setTeacherResponse', submissionId, type, detail);
+        $scope.setTeacherResponse = function(submissionId, type){
+            Meteor.call('setTeacherResponse', submissionId, type);
         };
 
+        $scope.checkAnswer = function(question, submission){
+            if(question.answer == submission.data.content)
+                return true;
+            return false;
+        };
     }
 ]);

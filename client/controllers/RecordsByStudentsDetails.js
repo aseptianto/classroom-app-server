@@ -35,5 +35,11 @@ angular.module("ClassRoom").controller("recordsByStudentsDetailsCtrl", ['$scope'
                 return "";
             }
         };
+
+        $scope.checkAnswer = function(question, submission){
+            if(question.answer == submission.data.content)
+                return true;
+            return false;
+        };
     }
 ]);

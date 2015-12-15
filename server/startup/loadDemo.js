@@ -7,7 +7,7 @@ Meteor.startup(function(){
             'question':'NqAiyKRj7Xhsci6Ev',
             'student':'u3fsT5SWxPiDg5Hxr',
             'subtime': new Date(),
-            'data': 'Elephane',
+            'data': {"type": 0, "content": 1},
             'teacher_response': -1,
             'response_detail': 'I love it'
             },
@@ -17,7 +17,7 @@ Meteor.startup(function(){
             'question':'ZBMy5QTKrLTi3vRkW',
             'student':'u3fsT5SWxPiDg5Hxr',
             'subtime': new Date(),
-            'data': 'Elephane123',
+            'data': {"type": 1, "content": "Elephane123"},
             'teacher_response': 2,
             'response_detail': 'Wrong'
             }

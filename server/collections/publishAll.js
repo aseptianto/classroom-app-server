@@ -69,8 +69,10 @@ Picker.route("/api/upload-file", function (params, req, res, next) {
         var busboy = new Busboy({headers: req.headers});
         busboy.on("file", function(fieldname, file, filename, encoding, mimetype) {
             //var theDir = "/public/images";
-            var saveTo = __meteor_bootstrap__.serverDir.split(".meteor")[0] + "/public/submission/" + filename;
+            //var saveTo = __meteor_bootstrap__.serverDir.split(".meteor")[0] + "/public/submission/" + filename;
 
+            var saveTo = "../web.browser/app/user_uploads/" + filename;
+            //var saveTo = filename;
             //console.log("save to " + path.dirname(require.main.filename));
             //var saveTo = path.join(theDir, filename);
             var fileSizeBytes = 0;

@@ -10,17 +10,21 @@ Question = new Mongo.Collection("question");
 
 SubMapReduce = new Mongo.Collection("SubMapReduce");
 
-Images = new FS.Collection('images', {
-    stores: [new FS.Store.GridFS("original")],
-    filter: {
-        maxSize: 1048576 * 4,
-        allow: {
-            contentTypes: ['image/*']
-        }
-    }
+//Images = new FS.Collection('images', {
+//    stores: [new FS.Store.GridFS("original")],
+//    filter: {
+//        maxSize: 1048576 * 4,
+//        allow: {
+//            contentTypes: ['image/*']
+//        }
+//    }
+//});
+
+Uploads = new FS.Collection("uploads", {
+    stores: [new FS.Store.FileSystem("uploads", {path: "~/uploads"})]
 });
 
-Images.allow({
+Uploads.allow({
     insert: function (userId, fileObj) {
         return true;
     },
@@ -34,6 +38,21 @@ Images.allow({
         return true;
     }
 });
+
+//Images.allow({
+//    insert: function (userId, fileObj) {
+//        return true;
+//    },
+//    update: function (userId, fileObj) {
+//        return true;
+//    },
+//    remove: function (userId, fileObj) {
+//        return true;
+//    },
+//    download: function (userId, fileObj /*, shareId*/) {
+//        return true;
+//    }
+//});
 /*
  Meteor.publish('images', function(){
  return Images.find({});

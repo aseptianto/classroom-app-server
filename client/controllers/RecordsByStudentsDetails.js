@@ -26,8 +26,12 @@ angular.module("ClassRoom").controller("recordsByStudentsDetailsCtrl", ['$scope'
 
         $meteor.subscribe("submissions", $scope.stuId, $scope.activityId);
 
+        $scope.getSubmission = function(questionId){
+            return Submission.findOne({'question':questionId});
+        }
+
         $scope.getSubmissionAns = function(questionId){
-            $scope.submission = Submission.findOne({'question':questionId});
+            $scope.submission = $scope.getSubmission(questionId);
             if($scope.submission){
                 return $scope.submission.data;
             }
@@ -36,10 +40,18 @@ angular.module("ClassRoom").controller("recordsByStudentsDetailsCtrl", ['$scope'
             }
         };
 
-        $scope.checkAnswer = function(question, submission){
-            if(question.answer == submission.data.content)
+        $scope.setTeacherResponse = function(submissionId, type){
+            if(type != -1){
+                Submission.update({_id: submissionId}, {$set: {teacher_response: type}});
+            }
+        };
+
+
+        $scope.checkAnswer = function(question){
+            if(question.answer == $scope.getSubmissionAns(question._id))
                 return true;
             return false;
         };
+
     }
 ]);

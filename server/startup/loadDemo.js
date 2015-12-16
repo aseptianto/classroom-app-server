@@ -3,21 +3,21 @@ Meteor.startup(function(){
     if (Submission.find().count() === 0) {
         var submissions = [
             { 'grade': 100,
-            'activity': 'CnTLPhbjaf7H5qgbR',
-            'question':'MPBLGuESbaofio2JS',
-            'student':'BcsnF5hAmRxo6d3QD',
+            'activity': 'NftbEFKMFYjexjcNJ',
+            'question':'8e8EDfZTwNEn62vbM',
+            'student':'u3fsT5SWxPiDg5Hxr',
             'subtime': new Date(),
-            'data': {"type": 0, "content": 1},
+            'data': "1",
             'teacher_response': -1,
             'response_detail': 'I love it'
             },
             {
             'grade': 100,
-            'activity': 'CnTLPhbjaf7H5qgbR',
-            'question':'iaE77om8iqqiZHJLK',
-            'student':'BcsnF5hAmRxo6d3QD',
+            'activity': 'NftbEFKMFYjexjcNJ',
+            'question':'ZBMy5QTKrLTi3vRkW',
+            'student':'u3fsT5SWxPiDg5Hxr',
             'subtime': new Date(),
-            'data': {"type": 1, "content": "Green"},
+            'data': "Green",
             'teacher_response': 2,
             'response_detail': 'Wrong'
             }

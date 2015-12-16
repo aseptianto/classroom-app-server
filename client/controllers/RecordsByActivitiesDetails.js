@@ -36,7 +36,7 @@ angular.module("ClassRoom").controller("recordsByActivitiesDetailsCtrl", ['$scop
         };
 
         $scope.checkAnswer = function(question, submission){
-            if(question.answer == submission.data.content)
+            if(question.answer == submission.data)
                 return true;
             return false;
         };

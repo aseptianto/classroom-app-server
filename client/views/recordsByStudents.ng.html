@@ -16,10 +16,10 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>
+                                    <th style="width:50px;">
                                         #
                                     </th>
-                                    <th ng-repeat="activity in activities">
+                                    <th style="width:80px;" ng-repeat="activity in activities">
                                         {{activity.name}}
                                     </th>
                                 </tr>
@@ -27,7 +27,13 @@
                             <tbody>
                                 <tr ng-repeat="student in students">
                                     <th>{{student.username}}</th>
-                                    <td ng-repeat="activity in activities"><a ng-click="popup('recordsByStudents/' + student._id + '/' + activity._id)">Report</a></td>
+                                    <td ng-repeat="activity in activities">
+                                        <div style="width:50px;">
+                                        <a ng-click="popup('recordsByStudents/' + student._id + '/' + activity._id)">
+                                            Report
+                                        </a>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

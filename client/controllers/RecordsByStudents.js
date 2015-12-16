@@ -2,11 +2,13 @@ angular.module("ClassRoom").controller("recordsByStudentsCtrl", ['$scope', '$met
     function($scope, $meteor, Misc){
         $scope.heading = {title: 'Records by Students'};
 
+        var students;
         $meteor.subscribe("users").then(function(){
             $scope.students = $meteor.collection(function(){
                 return Meteor.users.find();
             }, false);
         });
+
 
         $meteor.subscribe("activities").then(function(){
             $scope.activities = $meteor.collection(function(){
@@ -19,6 +21,12 @@ angular.module("ClassRoom").controller("recordsByStudentsCtrl", ['$scope', '$met
                 return Activity.find({status: 0});
             }, false);
         });
+
+         $scope.$watch('activities', function() {
+             if($scope.activities)
+                console.log('run');
+         });
+
 
        $scope.popup = Misc.popup; //And call the method on the Scope.
 

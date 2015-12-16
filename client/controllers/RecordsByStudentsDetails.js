@@ -45,6 +45,7 @@ angular.module("ClassRoom").controller("recordsByStudentsDetailsCtrl", ['$scope'
             }*/
 
             $scope.getSubmission = function(questionId){
+
                 for(var i = 0; i < $scope.studentSubmissions.length; i++){
                     if($scope.studentSubmissions[i].question == questionId){
                         console.log( $scope.studentSubmissions[i]);

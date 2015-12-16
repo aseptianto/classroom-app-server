@@ -3,14 +3,13 @@
     <h3>{{students[0].username}} {{activities[0].name}} Detail Report</h3>
     <small>
     <i class="fa fa-thumb-tack"></i>
-    <span class="item" ng-if="questions.length == 0">
+    <span class="item" ng-if="studentSubmissions.length ==0 || questions.length == 0">
         No Submission Yet
     </span>
     <span ng-bind-html="activities[0].instruction"></span></small>
     </div>
 
-
-    <div class="item"  ng-repeat="q in questions">
+    <div class="item" ng-if="studentSubmissions.length !=0" ng-repeat="q in questions">
         <div class="message">
             <h4>Question {{$index + 1}}:</h4>
             <p ng-bind-html="q.prompt"></p>

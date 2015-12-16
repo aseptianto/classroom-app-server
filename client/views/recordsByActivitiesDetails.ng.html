@@ -24,11 +24,17 @@
                                 MC:
                                 <i ng-class="checkAnswer(q, submission) ? 'fa fa-check' : 'fa fa-times'"></i>
                             </div>
-                            <div ng-if="q.type == 1 && q.type == 3 && q.type==4">
+                            <div ng-if="q.type == 1">
                                 <div style="width: 145px; height:105px; overflow: auto;">{{submission.data}}</div>
                             </div>
+                            <div ng-if="q.type == 3">
+                                <div style="width: 145px; height:105px; overflow: auto;"><a href="user_uploads/{{submission._id}}.mp4">Download</a></div>
+                            </div>
+                            <div ng-if="q.type == 4">
+                                <div style="width: 145px; height:105px; overflow: auto;"><a href="user_uploads/{{submission._id}}.3gp">Download</a></div>
+                            </div>
                             <div ng-if="q.type == 2">
-                                <div style="width: 145px; height:105px; overflow: auto;"><img src="{{submission.data}}" style="width: 145px; height:105px;"></div>
+                                <div style="width: 145px; height:105px; overflow: auto;"><img src="user_uploads/{{submission.id}}.jpg" style="width: 145px; height:105px;"></div>
                             </div>
                             <div ng-if="q.type != 0 " id="teacherFeedback">
                                 <div class="alert alert-warning" style="padding:0px;">

@@ -29,7 +29,8 @@
                                     <th>{{student.username}}</th>
                                     <td ng-repeat="activity in activities">
                                         <div style="width:50px;">
-                                        <a ng-click="popup('recordsByStudents/' + student._id + '/' + activity._id)">
+
+                                        <a href="recordsByStudents/{{student._id}}/{{activity._id}}" onclick="return false;" ng-click="popup('recordsByStudents/' + student._id + '/' + activity._id);">
                                             Report
                                         </a>
                                         </div>

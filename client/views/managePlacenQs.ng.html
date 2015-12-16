@@ -16,7 +16,7 @@
                             <div class="activity-manager">
 
                                 <div>
-                                    <h4 style="text-align:center;">Depolyed Activities</h4>
+                                    <h4 style="text-align:center;">Deployed Activities</h4>
                                 </div>
                                 <div>
                                     <ul class="folder-list m-b-md" style="padding: 0">
@@ -72,12 +72,12 @@
                                         ng-click="removeActivity(activityId)">Remove
                                 </button>
                                 <button type="button" class="btn btn-primary btn-sm"
-                                        ng-click="deployActivity(activityId)">Depoly
+                                        ng-click="deployActivity(activityId)">Deploy
                                 </button>
                             </span>
                             <span ng-if="activity != null && activity.status == 1">
                                 <button type="button" class="btn btn-primary btn-sm"
-                                        ng-click="undeployActivity(activityId)">Undepoly
+                                        ng-click="undeployActivity(activityId)">Undeploy
                                 </button>
 
                             </span>
@@ -123,7 +123,13 @@
                             </h2>
                         </div>
                         <div class="ibox-content" ng-if="activity == null">
-                            No activity
+                            <div class="sk-spinner sk-spinner-wave">
+                                <div class="sk-rect1"></div>
+                                <div class="sk-rect2"></div>
+                                <div class="sk-rect3"></div>
+                                <div class="sk-rect4"></div>
+                                <div class="sk-rect5"></div>
+                            </div>
                         </div>
                         <div class="ibox-content" ng-if="activity != null"><!--<label>{{question}}</label>-->
                             <!--<a href="#" ng-click="addQuestion()" ng-if="activity.status == 0">Add new question for this activity</a>-->
@@ -134,8 +140,9 @@
                                 Click on the following question to show question details:
                             </span>
                             <ul class="list-group clear-list m-t" ui-sortable="sortableOptions" ng-model="questions" ng-mouseenter="setOptions()">
-                                <li ng-repeat="question in questions" ng-class="question.order <= 1 ? 'list-group-item fist-item': 'list-group-item'">
-                                    <a data-id="{{question._id}}" href="/managePlacenQs/{{activityId}}/question/{{question._id}}#manageQsBox">{{question.order}}. {{strip(question.prompt)}}
+                                <li ng-repeat="question in questions" class="bg-success" ng-class="{'list-group-item fist-item': question.order <= 1, 'list-group-item': !(question.order <= 1)}">
+                                    <a href="/managePlacenQs/{{activityId}}/question/{{question._id}}#manageQsBox">
+                                        {{question.order}}. {{strip(question.prompt)}}
                                         <span ng-if="strip(question.prompt) == ''">No Name</span>
                                     </a>
                                     <a ng-click="removeQuestion(question._id)" ng-if="activity.status == 0">x</a>
@@ -150,7 +157,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Prompt:</label>
                                     <div>
-                                        <text-angular ng-model="question.prompt" ng-disabled="activity.status == 1" select-on-click></text-angular>
+                                        <text-angular ng-model="question.prompt" ng-disabled="activity.status == 1"></text-angular>
                                         <!--<input type="text" ng-model="question.prompt" ng-disabled="activity.status == 1" class="form-control input-sm" name="search" placeholder="Activity Name" select-on-click>-->
                                     </div>
                                 </div>
@@ -224,21 +231,22 @@
                                 </div>
 
 
-                                <label>Tips: </label><br/>
-                                    <span ng-if="question.tips == null">
+                                <div>
+                                    <label>Tips: </label>
+                                    <div ng-if="question.tips == null">
                                         <label>No tips for this question yet</label><br/>
                                         <label>Use Previous Tips (two/more consecutive questions with the same tips will make
                                             multiple questions for that single qr code)</label><br/>
-                                        <span ng-if="canPreviousTips()">
-                                            <label ng-if="canPreviousTips()">Use Previous Tips</label>
-                                            <input type="checkbox" ng-model="question.use_previous_tips"
-                                                   ng-disabled="activity.status == 1" ng-change="onCheckPreviousTips()"/>
-                                        </span><br/>
-                                        <span ng-if="!question.use_previous_tips">
-                                            <label>Or create a new one below..</label>
+                                            <span ng-if="canPreviousTips()">
+                                                <label ng-if="canPreviousTips()">Use Previous Tips</label>
+                                                <input type="checkbox" ng-model="question.use_previous_tips"
+                                                ng-disabled="activity.status == 1" ng-change="onCheckPreviousTips()"/>
+                                            </span><br/>
+                                            <span ng-if="!question.use_previous_tips">
+                                                <label>Or create a new one below..</label>
 
                                                 <label>Tag</label><input type="text" ng-model="newTips.name"
-                                                                         ng-disabled="activity.status == 1">
+                                                ng-disabled="activity.status == 1">
                                                 <label ng-if="tipsNameEmpty == true">Tips name is empty!</label><br/>
                                                 <div class="form-group">
                                                     <label>Direction: </label>
@@ -246,38 +254,45 @@
                                                 </div>
                                                 <div class="row text-center">
                                                     <button class="btn btn-primary pull-right" style="margin-right:18px;" ng-click="createTips(newTips);"
-                                                        ng-disabled="activity.status == 1">Add Tag</button>
+                                                    ng-disabled="activity.status == 1">Add Tag</button>
                                                 </div>
 
-                                        </span>
-                                    </span>
-                                    <span ng-if="activeTips != null">
-                                        <label>You have created the tips</label><br/>
-                                        <button ng-click="removeTips(question.tips)" ng-disabled="activity.status == 1">Remove
-                                            tips
-                                        </button><br/>
-                                        <label>QR Code</label><br/>
-                                        <div>
-                                            <qrcode style="margin: 0 auto;" data="{{question.tips}}" size="300"
-                                                    download></qrcode>
+                                            </span>
                                         </div>
-                                        <label>Tag</label><input type="text" ng-model="activeTips.name"
-                                                                 ng-disabled="activity.status == 1"><br/>
-                                        <label>Direction: </label>
-                                        <text-angular ng-model="activeTips.direction" ng-disabled="activity.status == 1"></text-angular>
-                                    </span>
-                                    <span ng-if="question.use_previous_tips">
-                                        <label>Previous tips info</label><br/>
-                                        <label>QR Code</label><br/>
-                                        <div>
-                                            <qrcode style="margin: 0 auto;" data="{{previousTips._id}}" size="300"
-                                                    download></qrcode>
-                                        </div>
-                                        <label>Tag: {{previousTips.name}}</label><br/>
-                                        <label>Direction: {{previousTips.direction}}</label><br/>
-                                    </span>
-                            </span>
 
+
+                                        <div ng-if="activeTips != null">
+                                            <label>You have created the tips</label><br/>
+                                            <button ng-click="removeTips(question.tips)" ng-disabled="activity.status == 1">Remove
+                                                tips
+                                            </button><br/>
+                                            <label>QR Code</label><br/>
+                                            <div>
+                                                <qrcode style="margin: 0 auto;" data="{{question.tips}}" size="300"
+                                                download></qrcode>
+                                            </div>
+                                            <label>Tag</label><input type="text" ng-model="activeTips.name"
+                                            ng-disabled="activity.status == 1"><br/>
+                                            <label>Direction: </label>
+                                            <text-angular ng-model="activeTips.direction" ng-disabled="activity.status == 1"></text-angular>
+                                        </div>
+
+
+                                        <div ng-if="question.use_previous_tips">
+                                            <label>Previous tips info</label><br/>
+                                            <label>QR Code</label><br/>
+                                            <div>
+                                                <qrcode style="margin: 0 auto;" data="{{previousTips._id}}" size="300"
+                                                download></qrcode>
+                                            </div>
+                                            <label>Tag: {{previousTips.name}}</label><br/>
+                                            <label>Direction: {{previousTips.direction}}</label><br/>
+                                        </div>
+                                    </div>
+
+
+
+                            </span>
                         </div>
                     </div>
                 </div>

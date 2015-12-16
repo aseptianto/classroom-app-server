@@ -1,7 +1,9 @@
 <div class="white-bg">
     <h1>Detail Report</h1>
     <div>Student: {{students[0].username}}</div>
-    <div>Activity: {{activities[0].name}}</div>
+    <div>Activity Name: {{activities[0].name}}<br>
+        Instruction: <p ng-bind-html="activities[0].instruction"></p>
+    </div>
 
     <div class="item" ng-repeat="question in questions">
         <div class="message">
@@ -10,7 +12,16 @@
         </div>
         <div class="alert alert-warning">
             <h4>Student Answer:</h4>
-            {{getSubmissionAns(question._id)}}
+            {{getSubmissionAns(question._id).content}}
+            <div class="alert alert-warning" style="padding:0px;">
+                Feedback:
+                <i ng-class="submission.teacher_response == 1 ? 'fa fa-smile-o fa-lg text-warning': 'fa fa-smile-o'" ng-click="setTeacherResponse(submission._id, 1)"></i>
+                <i ng-class="submission.teacher_response == 0 ? 'fa fa-frown-o fa-lg text-warning': 'fa fa-frown-o'" ng-click="setTeacherResponse(submission._id, 0)"></i>
+                <i ng-class="submission.teacher_response == 2 ? 'fa fa-circle-o fa-lg text-warning': 'fa fa-circle-o'" ng-click="optionClick=true; setTeacherResponse(submission._id, 2)"></i>
+                <div>
+                    <input style="width:145px;" type="text" ng-show="optionClick" ng-model="submission.response_detail">
+                </div>
+            </div>
         </div>
      </div>
 

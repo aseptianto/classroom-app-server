@@ -27,9 +27,9 @@ angular.module("ClassRoom").controller("recordsByStudentsDetailsCtrl", ['$scope'
         $meteor.subscribe("submissions", $scope.stuId, $scope.activityId);
 
         $scope.getSubmissionAns = function(questionId){
-            var submission = Submission.findOne({'question':questionId});
-            if(submission){
-                return submission.data;
+            $scope.submission = Submission.findOne({'question':questionId});
+            if($scope.submission){
+                return $scope.submission.data;
             }
             else {
                 return "";
